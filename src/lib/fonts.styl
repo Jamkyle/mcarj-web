@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family='Rambla:400,700|Raleway:400,600|Abel|Muli|Josefin+Sans:400,300')
+
+.raleway
+  font-family: 'Raleway', sans-serif;
+.rambla
+  font-family: 'Rambla', sans-serif;
+.abel
+  font-family 'Abel', sans-serif
+.muli
+  font-family 'Muli', sans-serif
+.josefin
+  font-family 'Josefin Sans', sans-serif
+
+@media (min-width: 320px)
+  for n in (1..5)
+    .fn-xs-{n}
+      font-size 0.3em + n * 0.22
+
+@media (min-width:460px )
+  for n in (1..5)
+    .fn-sm-{n}
+      font-size 0.3em + n * 0.44
+
+@media (min-width: 1024px)
+  for n in (1..5)
+    .fn-lg-{n}
+      font-size 2.1em + n * 0.4

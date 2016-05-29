@@ -1,13 +1,123 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>mcarj-web</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>mcarj-web</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+  <section id="header" class="parallaxParent">
+    <div class="bg_head"></div>
+    <div class=""></div>
+    <article class="inner">
+      <p class='raleway fn-sm-3 fn-xs-2'>VROOMCAB VOUS PROPOSE</p>
+      <h1 class='abel fn-lg-5 fn-sm-5 fn-xs-5' style='font-weight : 600; color : orange'>DENFERT ORLY POUR 12€</h1>
+      <button class='btn btn-primary'type="button" name="button">Reserver Maintenant</button>
+      <p class='raleway welcom fn-sm-3 fn-xs-2'>Un voyage dans le confort et la tranquilité</p>
+    </article>
+
+    <!-- <img id='logo' class='img' src="./lib/src/stars.png" /> -->
+  </section>
+
+  <section id="simulate" class='parallaxParent subtleDots'>
+    <div class='simulate container-fluid'>
+      <h1 class='raleway' style="font-weight: 600">Reserver dès maintenant votre place</h1>
+      <div id='way' class="row col-lg-10 col-sm-10 col-sm-offset-1 col-lg-offset-1 inner_Simulate">
+        <form class='form row'>
+          <h5>Pour Denfert Orly</h5>
+          <div class="form-horizontal col-sm-offset-1">
+            <div class="form-group col-sm-10">
+
+              <div class='col-sm-4 col-lg-4 col-xs-4 form-inline date' id='ticket'>
+                <label>
+                  <i class="fa fa-ticket"></i>
+                </label>
+                <select class="form-control" id="tickets">
+                </select>
+              </div>
+              <div class='col-sm-4 col-lg-4 col-xs-4 input-group date' id='package'>
+                <span class="input-group-addon">
+                  <span class="fa fa-suitcase"></span>
+                </span>
+                <select class="form-control" id="packages">
+                </select>
+
+              </div>
+              <div class="col-sm-10 form-group form-inline">
+                <div class='col-sm-4 col-lg-4 col-xs-4 input-group date' id='datetime'>
+                  <input type='text' class="form-control" required="true"/>
+                  <span class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                  </span>
+                </div>
+                <div class="col-sm-4 col-lg-3 col-xs-4 input-group" id='clock'>
+                  <input type='text' class="form-control" required="true"/>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-time pointer"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+  <section id="info">
+    <div class="container-fluid">
+      <h1 class='raleway'>Nous vous proposons</h1>
+      <div class="row-eq-height col-lg-10 col-lg-offset-1">
+        <div class="col-sm-4 panel panel-default">
+          <div class="panel-title">
+            Je veux aller...
+          </div>
+          <div class="panel-body">
+            <h4>Réserver une voiture</h4>
+            <p class="desc">
+              Pour Des déplacements court ou long, le tarif est défini en fonction de la distance de la course
+            </p>
+          </div>
+        </div>
+        <div class="col-sm-4 panel panel-default">
+          <div class="panel-title">
+            Co-Transfer Denfert-Orly
+          </div>
+          <div class="panel-body">
+            <h4>Denfert-Aeroport Orly 10€</h4>
+            <p class="desc">
+              Indiv. ou en groupe
+              retrouver McarJ pour un
+              transfert Denfert-AeOrly pour 10€/pr
+            </p>
+            <button class='btn btn-primary'type="button" name="button">Reserver</button>
+          </div>
+        </div>
+        <div class="col-sm-4 panel panel-default">
+          <div class="panel-title">
+            Je ne fais que passer
+          </div>
+          <div class="panel-body">
+            <h4>Paris en 2H </h4>
+            <p class="desc">
+              Une visite de Paris pendant vos heures d'attentes ou parceque vous en avez envie?
+              McarJ vous propose une visite de Paris pour le parcours de votre choix
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id='footer' class="container-fluid" style='background-color: #343735'>
+  </section>
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+</body>
 </html>

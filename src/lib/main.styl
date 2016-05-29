@@ -1,0 +1,139 @@
+body
+  font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.9);
+
+html, body
+  height 100%
+  margin 0
+._left
+  position relative
+
+//Pattern Bg
+.stripes
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjOWU5ZTllIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDVMNSAwWk02IDRMNCA2Wk0tMSAxTDEgLTFaIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iMSI+PC9wYXRoPgo8L3N2Zz4=");
+.crossStripes
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjNDAzYzNmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTI5MmQiPjwvcGF0aD4KPC9zdmc+");
+.subtleDots
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+");
+
+//parallax
+.parallaxParent
+  height 120vh
+  overflow hidden
+  text-align center
+  @media (max-device-width: 1024px)
+    height 100vh
+  for i in (0..1)
+    & > div:nth-child({i+1})
+      position relative
+      height 150%
+      top -50% - (i*130%)
+.bg
+  &_head
+    background: url("../lib/assets/paris.jpg") no-repeat 30% 40%
+    background-size cover
+#simulate
+  min-height 450px!important
+  height auto
+  overflow visible!important
+  padding-bottom 10%
+.header
+  opacity 0.5
+  & .img
+    width 100%
+    opacity 0.5
+  &_way
+    border-radius 5px 5px 0 0
+    text-align right
+    padding-right 10px
+    color #FEFEFE
+    background-color rgba(020,20,20,0.8)
+.inner
+  position relative
+  top -250%
+  z-index 1
+  color #fff
+  &_Simulate
+    border-radius: 5px
+    background-color: rgba(020,020,20,.3)
+.simulate
+  top 0!important
+@media only screen and (min-device-width : 320px) and (max-device-width:740px)
+  .title
+    margin-bottom -2.5em
+  #info
+    height 130vh
+    @media (orientation: landscape)
+      height 200vw
+      .title
+        margin-bottom -10%
+.welcom
+  color #67E3A7
+.description
+  color #F2F2F2
+  font-size 1.2em
+  text-align right
+.desc
+  font-size 1em
+  text-align left
+
+.blur
+  filter: blur(2px);
+
+.logo
+  height 300px
+
+ //Form
+.form
+  padding 10px
+.form-group
+  text-align left
+
+.indice
+  text-align left
+  color #EFEFEF
+
+.round
+  border-radius 5px 0 0 5px!important
+
+.flex
+  display flex
+
+.title
+  position relative
+  text-align left
+  top 100vh
+
+.row-eq-height
+  @media screen and (min-width: 460px)
+    display: -webkit-box
+    display: -webkit-flex
+    display: -ms-flexbox
+    display:         flex
+
+#way
+ & h1
+  color #fafafa
+#simulator
+  display none
+  padding 5px
+#map
+  height 50vh
+
+.d
+  &:after
+    content : 'de :'
+    margin-left : 10px
+.a
+  &:after
+    content : 'à  :'
+    margin-left : 16px
+
+.table
+    border #202020
+    background #F2F2F2
+    color #101010
+.pointer
+  cursor pointer
+//fonts
+@import './fonts'
