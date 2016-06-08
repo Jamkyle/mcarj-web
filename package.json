@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
     "font-awesome": "^4.6.1",
     "google-auth-library": "^0.9.8",
     "google-maps": "^3.2.1",
@@ -21,7 +22,11 @@
     "gsap": "^1.18.4",
     "jquery": "^2.2.3",
     "jquery-ui": "^1.10.5",
-    "scrollmagic": "^2.0.5"
+    "nodemailer": "^2.4.2",
+    "scrollmagic": "^2.0.5",
+    "socket.io": "^1.4.6",
+    "tls": "0.0.1",
+    "xoauth2": "^1.1.0"
   },
   "devDependencies": {
     "eonasdan-bootstrap-datetimepicker": "^4.15.35",

@@ -1,18 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -514,8 +500,3 @@ function Creepdf() {
 // Maintenant que tout est initialisé, on peut désactiver les "tooltips"
 
 deactivateTooltips();
-
-
-
-
-
