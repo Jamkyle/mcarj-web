@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="untitled.css" />
+</head>
+
+<body>
+    <form id="myForm">
+        <label class="form_col" for="nom">Nom *:</label>
+        <input name="nom" id="nom" type="text" />
+        <span class="tooltip">vous devez entrer votre nom</span>
+        <br /><br />
+
+        <label class="form_col" for="prenom">Prénom *:</label>
+        <input name="prenom" id="prenom" type="text" />
+        <span class="tooltip">vous devez entrer votre prenom</span>
+        <br /><br />
+
+        <label class="form_col" for="tel">Telephone *:</label>
+        <input name="tel" id="tel" type="text" />
+        <span class="tooltip"> votre numeros de telephone n'est pas valide</span>
+        <br /><br />
+
+        <label class="form_col" for="mail">email *:</label>
+        <input name="mail" id="mail" type="text" />
+        <span class="tooltip">le mail entré n'est pas valide</span>
+        <br /><br />
+
+        <label class="form_col" for="add">Adresse *:</label>
+        <input name="add" id="add" type="text" />
+        <span class="tooltip"> vous devez entrer votre adress</span>
+        <br /><br />
+
+        <label class="form_col" for="ville">Ville *:</label>
+        <input name="ville" id="ville" type="text" />
+        <span class="tooltip"> vous devez entrer un code postale valide</span>
+        <br /><br />
+
+        <label class="form_col" for="cd">Code Postal *:</label>
+        <input name="cd" id="cd" type="text" />
+        <span class="tooltip"> Vous devez entrer un code postal valide</span>
+
+        <br /><br />
+
+        <label class="form_col" for="nmb">Nombre de passager *:</label>
+
+        <span class="form_col">Nombre de passagers :</span>
+        <label><input name="nmb" type="radio" value="H" />1</label>
+        <label><input name="nmb" type="radio" value="F" />2</label>
+        <label><input name="nmb" type="radio" value="H" />3</label>
+        <label><input name="nmb" type="radio" value="F" />4</label>
+        <span class="tooltip">Vous devez sélectionnez le nombre de passagers</span>
+        <br /><br />
+
+        <label class="form_col" for="hr">Horaire *:</label>
+
+        <select name="hr" id="hr">
+        	<option value="none">Sélectionnez l'heure à laquelle vous desirez reserver une place</option>
+        	<option value="en">06h</option>
+        	<option value="us">07h</option>
+        	<option value="fr">08h</option>
+            <option value="en">09h</option>
+        	<option value="us">10h</option>
+        	<option value="fr">11h</option>
+            <option value="en">12h</option>
+        	<option value="us">13h</option>
+        	<option value="fr">14h</option>
+            <option value="en">15h</option>
+        	<option value="us">16h</option>
+        	<option value="fr">17h</option>
+            <option value="en">18h</option>
+        	<option value="us">19h</option>
+        	<option value="fr">20h</option>
+            <option value="en">21h</option>
+        	<option value="us">22h</option>
+        	<option value="fr">23h</option>
+
+
+    	</select>
+        <span class="tooltip">Vous devez selectionnez une heure</span>
+
+        <label class="form_col" for="date">Date *:</label>
+        <input type="date" name="date">
+        <span class="tooltip">Vous devez selectionnez une date</span>
+        <br /><br />
+
+        <label class="form_col" for="nomS">Nom de societe (facultatif) :</label>
+        <input name="nomS" id="nomS" type="text" />
+        <br /><br />
+
+
+        <span class="form_col"></span>
+        <label><input name="attest" type="checkbox" /> J'atteste de l'exactitude des informations données.</label>
+        <span class="tooltip">Vous devez accepter les termes de conditions generales d'utilisation</span>
+        <br /><br />
+
+        <span class="form_col"></span>
+        <input type="submit" value="Reserver ma place" />
+
+    </form>
+
+         <script type="text/javascript" language="Javascript" src="untitled.js"></script>
+</body>
+
+</html>
