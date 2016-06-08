@@ -1,3 +1,9 @@
+//img src
+  $img1 = '../lib/assets/paris.jpg'
+  $img2 = '../lib/assets/saint_augustin_paris.jpg'
+
+
+
 body
   font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.9);
@@ -30,8 +36,18 @@ html, body
       top -50% - (i*130%)
 .bg
   &_head
-    background: url("../lib/assets/paris.jpg") no-repeat 30% 40%
-    background-size cover
+     width 100%
+     height 100%
+
+.slider
+  background-size cover
+  width 100%
+  height 100%
+  &-1
+    background url($img1) no-repeat 30% 20%
+  &-2
+    background url($img2) no-repeat 20% 50%
+    background-size 120%
 #simulate
   min-height 450px!important
   height auto
@@ -49,8 +65,7 @@ html, body
     color #FEFEFE
     background-color rgba(020,20,20,0.8)
 .inner
-  position relative
-  top -250%
+  top 50%
   z-index 1
   color #fff
   &_Simulate
@@ -135,5 +150,6 @@ html, body
     color #101010
 .pointer
   cursor pointer
+
 //fonts
 @import './fonts'

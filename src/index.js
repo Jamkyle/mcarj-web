@@ -74,7 +74,7 @@ else{
 
 
   //nb places
-  let nbPlaces = 4
+  let nbPlaces = 4-2
 
   for(let i=1; i<=nbPlaces; i++)
     {
@@ -103,10 +103,12 @@ $(".left").click(function(){
     $("#slider").carousel("prev");
 });
 
-$('#simulate').submit(()=>{
-  event.preventDefault()
-  $('.formulaire').modal('toggle')
-})
+$('#simulate').submit(
+  ()=>{
+    event.preventDefault()
+    $('.formulaire').modal('toggle')
+  }
+)
 
 $('#openGeneralCondition').click((event)=>{
   event.preventDefault()
@@ -115,9 +117,19 @@ $('#openGeneralCondition').click((event)=>{
 
 $('#formReservation').submit((e)=>{
   let name = $('#nom').val()
+  let prenom = $('#prenom').val()
   console.log("email envoyé");
-
-  socket.emit('sendMail', {
-     content: '<h1>Bonjour monsieur '+ name +'</h1><p>nous voici un peu dans l embaras</p>'
-   });
+  socket.emit(
+    'forPdf',
+    {
+     nom: name,
+     prenom : prenom
+    }
+ );
+  socket.emit(
+    'sendMail',
+    {
+     content: '<h1>Bonjour monsieur '+ name + prenom +'</h1><p>Jaime bcp votre prenom il est jolie</p>'
+    }
+ );
 })
