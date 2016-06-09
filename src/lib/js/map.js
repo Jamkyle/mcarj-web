@@ -22,7 +22,6 @@ GoogleMapsLoader.load(google => {
 
 directionsService = new google.maps.DirectionsService(); // Service de calcul d'itinéraire
 
-
   let latLng = new google.maps.LatLng(48.8566140, 2.3522219); // Coordonnée de Paris
     let myOptions = {
       maps : {

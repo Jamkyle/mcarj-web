@@ -22,8 +22,6 @@ import './lib/js/form'
 let app = document.querySelector('#app')
 let script = document.querySelector('#script')
 
-
-
 var controller = new ScrollMagic.Controller({
    globalSceneOptions: { triggerHook: "onEnter", duration: "200%" }
  });
@@ -40,33 +38,31 @@ new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
                     .on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
                     ).addTo(controller)
-let date, hours, minutes
-
-date = new Date();
-hours = date.getHours();
-minutes = date.getMinutes();
-if(minutes < 30){
-  date.setMinutes(minutes+30);
-}
-else{
-  date.setHours(hours+1)
-}
+let date = moment() , hours, minutes
 
 let datetime = $('#datetime')
 let clock  = $('#clock')
 
 datetime.datetimepicker({
-  minDate: date,
+  minDate: moment().hours(-1),
+  disabledDates:[ moment().subtract(1, 'days') ],
   maxDate: moment().add(1, 'years').month(12),
   daysOfWeekDisabled: [0],
   format : 'DD/MM/YYYY'
 });
+
 clock.datetimepicker({
-  date : moment(date),
-  minDate: moment().subtract(5, 'minutes'),
+  date : date || moment().add(1, 'hours'),
+  minDate: moment(),
+  maxDate : date.add(1, 'days'),
   stepping : 30,
   format : 'LT'
 });
+
+datetime.on('dp.change', function(e){
+  date = moment(e.date)
+})
+
 //
 
 //nb places
@@ -78,8 +74,13 @@ for(let i=1; i<=nbPlaces; i++)
   $('#tickets').append(option)
 }
 //bagages
-let bagages = 1
-for(let i=0; i<=bagages; i++)
+let currentBagage = 1
+let totalBagages = 4 - currentBagage
+let renderBagage;
+
+(totalBagages > 0)? renderBagage = 1 : renderBagage = 0;
+
+for(let i=0; i<=renderBagage; i++)
 {
   let option = $('<option value="'+i+'">'+i+'</option>');
   $('#packages').append(option)
@@ -98,13 +99,6 @@ $(".slider2").click(function(){
 $(".left").click(function(){
   $("#slider").carousel("prev");
 });
-
-$('#simulate').submit(
-  ()=>{
-    event.preventDefault()
-    $('.formulaire').modal('toggle')
-  }
-)
 
 $('#openGeneralCondition').click((event)=>{
   event.preventDefault()

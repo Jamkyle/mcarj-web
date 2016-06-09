@@ -1,4 +1,4 @@
-import './connect'
+import { socket } from './connect'
 
 $('#formReservation').submit(
 (e)=>{
@@ -13,13 +13,22 @@ $('#formReservation').submit(
       prenom : prenom
     }
   );
+
   socket.emit(
     'sendMail',
     {
       subject : "facturation",
       destination : email,
-      content: '<h1>Bonjour monsieur '+ name + prenom +'</h1> <p> retrouvez votre facturation dans une piece ci-jointe</p>'
+      content: '<h1>Bonjour monsieur '+ name +' '+ prenom +'</h1> <p> retrouvez votre facturation dans une piece ci-jointe</p>'
     }
   );
   console.log("email envoyé");
 })
+
+
+// consultation
+$('#simulate').submit(
+  ()=>{
+    $('.formulaire').modal('toggle')
+  }
+)
