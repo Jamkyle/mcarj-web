@@ -6,7 +6,7 @@ import { googlefonts } from 'googlefonts'
 import './lib/main.styl'
 import './lib/js/map'
 import 'font-awesome/css/font-awesome.min.css'
-import io from 'socket.io-client'
+
 import 'moment'
 // import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -14,22 +14,15 @@ import 'bootstrap/dist/js/bootstrap.min'
 import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 import 'imports?define=>false!eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
 
-import './quickstart'
+import './lib/js/connect'
 import './lib/js/form'
+
+
 
 let app = document.querySelector('#app')
 let script = document.querySelector('#script')
 
-let socket = io.connect('http://localhost:4200');
 
-
-socket.on('connect', function (socket) {
-  console.log('Connected!');
-});
-
-socket.on('message', function(message) {
-  console.log('Le serveur a un message pour vous : ' + message);
-})
 
 var controller = new ScrollMagic.Controller({
    globalSceneOptions: { triggerHook: "onEnter", duration: "200%" }
@@ -116,25 +109,4 @@ $('#simulate').submit(
 $('#openGeneralCondition').click((event)=>{
   event.preventDefault()
   $('#generalCondition').modal('toggle')
-})
-
-$('#formReservation').submit(
-(e)=>{
-  let name = $('#nom').val()
-  let prenom = $('#prenom').val()
-
-  socket.emit(
-    'generatePdf',
-    {
-      nom: name,
-      prenom : prenom
-    }
-  );
-  socket.emit(
-    'sendMail',
-    {
-      content: '<h1>Bonjour monsieur '+ name + prenom +'</h1><p>Jaime bcp votre prenom il est jolie</p>'
-    }
-  );
-  console.log("email envoyé");
 })

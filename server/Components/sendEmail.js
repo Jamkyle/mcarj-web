@@ -14,10 +14,11 @@ var smtpTransport = nodemailer.createTransport({
 });
 
 exports.sendMail = function(data){
+
   var mailOptions = {
     from: "jstyle3003@gmail.com",
-    to: "raha.aro@gmail.com",
-    subject: "Test Mail",
+    to: data.destination,
+    subject: data.subject,
     generateTextFromHTML: true,
     html: data.content
   };

@@ -3,7 +3,7 @@ var io = require('socket.io')(server);
 var sendEmail = require('./Components/sendEmail.js')
 
 server.listen(4200, function(){
-  console.log('server running...');
+  console.log('server is running...');
 });
 
 io.sockets.on('connection', function (socket) {
