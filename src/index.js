@@ -74,7 +74,7 @@ else{
 
 
   //nb places
-  let nbPlaces = 4-2
+  let nbPlaces = 4
 
   for(let i=1; i<=nbPlaces; i++)
     {
