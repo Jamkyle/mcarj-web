@@ -11,11 +11,12 @@ import 'moment'
 // import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
-import 'eonasdan-bootstrap-datetimepicker'
+import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+import 'imports?define=>false!eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
 
 import './quickstart'
 import './lib/js/form'
-// import 'bootstrap'
+
 let app = document.querySelector('#app')
 let script = document.querySelector('#script')
 
@@ -23,84 +24,86 @@ let socket = io.connect('http://localhost:4200');
 
 
 socket.on('connect', function (socket) {
-    console.log('Connected!');
+  console.log('Connected!');
 });
 
 socket.on('message', function(message) {
-        console.log('Le serveur a un message pour vous : ' + message);
-    })
+  console.log('Le serveur a un message pour vous : ' + message);
+})
 
-var controller = new ScrollMagic.Controller({ globalSceneOptions: { triggerHook: "onEnter", duration: "200%" } });
+var controller = new ScrollMagic.Controller({
+   globalSceneOptions: { triggerHook: "onEnter", duration: "200%" }
+ });
 
-let head = new ScrollMagic.Scene({triggerElement: "#header"})
-        .setTween("#header > *", {y:"23%", ease: Linear.easeNone})
-        .addTo(controller);
+let head = new ScrollMagic.Scene({ triggerElement: "#header" })
+.setTween("#header > *", {y:"23%", ease: Linear.easeNone})
+.addTo(controller);
 
-new ScrollMagic.Scene({offset: head.scrollOffset()+600 })
-        .setTween(TweenLite.to(".inner", 1, {opacity:'0', ease: Linear.easeNone}))
-        // .addIndicators()
-        .addTo(controller);
+new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
+.setTween(TweenLite.to(".inner", 1, {opacity:'0', ease: Linear.easeNone}))
+// .addIndicators()
+.addTo(controller);
 
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
-              .on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
-            ).addTo(controller)
+                    .on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
+                    ).addTo(controller)
 let date, hours, minutes
 
 date = new Date();
-hours = date.getHours()
+hours = date.getHours();
 minutes = date.getMinutes();
 if(minutes < 30){
   date.setMinutes(minutes+30);
-  }
+}
 else{
-  date.setHours(hours+1);
+  date.setHours(hours+1)
 }
 
-  let datetime = $('#datetime')
-  let clock  = $('#clock')
+let datetime = $('#datetime')
+let clock  = $('#clock')
 
-  datetime.datetimepicker({
-    minDate: date,
-    widgetPositioning: {vertical : 'auto', horizontal: 'right'},
-    daysOfWeekDisabled: [0],
-    format: 'DD/MM/YYYY'
-  });
+datetime.datetimepicker({
+  minDate: date,
+  maxDate: moment().add(1, 'years').month(12),
+  daysOfWeekDisabled: [0],
+  format : 'DD/MM/YYYY'
+});
+clock.datetimepicker({
+  date : moment(date),
+  minDate: moment().subtract(5, 'minutes'),
+  stepping : 30,
+  format : 'LT'
+});
+//
 
-  clock.datetimepicker({
-    date : moment(date),
-    format: 'HH:mm',
-    stepping: 15,
-  });
+//nb places
+let nbPlaces = 4
 
-
-  //nb places
-  let nbPlaces = 4
-
-  for(let i=1; i<=nbPlaces; i++)
-    {
-      let option = $('<option value="'+i+'">'+i+'</option>');
-      $('#tickets').append(option)
-    }
-  //bagages
-  let bagages = 1
-    for(let i=0; i<=bagages; i++)
-    {
-      let option = $('<option value="'+i+'">'+i+'</option>');
-      $('#packages').append(option)
-    }
+for(let i=1; i<=nbPlaces; i++)
+{
+  let option = $('<option value="'+i+'">'+i+'</option>');
+  $('#tickets').append(option)
+}
+//bagages
+let bagages = 1
+for(let i=0; i<=bagages; i++)
+{
+  let option = $('<option value="'+i+'">'+i+'</option>');
+  $('#packages').append(option)
+}
 
 $('#slider').carousel({
   interval : 5000
 })
 $(".slider1").click(function(){
-    $("#slider").carousel(0);
+  $("#slider").carousel(0);
 });
 $(".slider2").click(function(){
-    $("#slider").carousel(1);
+  $("#slider").carousel(1);
 });
 // Enable Carousel Controls
 $(".left").click(function(){
-    $("#slider").carousel("prev");
+  $("#slider").carousel("prev");
 });
 
 $('#simulate').submit(
@@ -115,21 +118,23 @@ $('#openGeneralCondition').click((event)=>{
   $('#generalCondition').modal('toggle')
 })
 
-$('#formReservation').submit((e)=>{
+$('#formReservation').submit(
+(e)=>{
   let name = $('#nom').val()
   let prenom = $('#prenom').val()
-  console.log("email envoyé");
+
   socket.emit(
-    'forPdf',
+    'generatePdf',
     {
-     nom: name,
-     prenom : prenom
+      nom: name,
+      prenom : prenom
     }
- );
+  );
   socket.emit(
     'sendMail',
     {
-     content: '<h1>Bonjour monsieur '+ name + prenom +'</h1><p>Jaime bcp votre prenom il est jolie</p>'
+      content: '<h1>Bonjour monsieur '+ name + prenom +'</h1><p>Jaime bcp votre prenom il est jolie</p>'
     }
- );
+  );
+  console.log("email envoyé");
 })
