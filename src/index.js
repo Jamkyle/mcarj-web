@@ -95,6 +95,7 @@ $(".slider1").click(function(){
 $(".slider2").click(function(){
   $("#slider").carousel(1);
 });
+
 // Enable Carousel Controls
 $(".left").click(function(){
   $("#slider").carousel("prev");
