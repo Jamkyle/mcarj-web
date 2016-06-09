@@ -12,8 +12,6 @@ import 'moment'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
-import 'imports?define=>false!eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
-
 import './lib/js/connect'
 import './lib/js/form'
 
@@ -23,8 +21,8 @@ let app = document.querySelector('#app')
 let script = document.querySelector('#script')
 
 var controller = new ScrollMagic.Controller({
-   globalSceneOptions: { triggerHook: "onEnter", duration: "200%" }
- });
+  globalSceneOptions: { triggerHook: "onEnter", duration: "200%" }
+});
 
 let head = new ScrollMagic.Scene({ triggerElement: "#header" })
 .setTween("#header > *", {y:"23%", ease: Linear.easeNone})
@@ -36,34 +34,36 @@ new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
 .addTo(controller);
 
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
-                    .on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
-                    ).addTo(controller)
-let date = moment() , hours, minutes
+.on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
+).addTo(controller)
+let date = moment()
 
 let datetime = $('#datetime')
 let clock  = $('#clock')
 
+if(moment().hours() < 6 )
+  date = moment().hours(6)
+else if(moment().hours() > 20)
+  date = moment().add(1, 'days').hours(6)
+else
+  date = moment()
+
 datetime.datetimepicker({
   minDate: moment().hours(-1),
+  maxDate: moment().add(1, 'years').month(11),
   disabledDates:[ moment().subtract(1, 'days') ],
-  maxDate: moment().add(1, 'years').month(12),
   daysOfWeekDisabled: [0],
   format : 'DD/MM/YYYY'
 });
 
 clock.datetimepicker({
-  date : date || moment().add(1, 'hours'),
-  minDate: moment(),
-  maxDate : date.add(1, 'days'),
+  date : date,
+  minDate : moment(),
+  maxDate : moment().hours(20).minutes(0),
+  disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23],
   stepping : 30,
   format : 'LT'
 });
-
-datetime.on('dp.change', function(e){
-  date = moment(e.date)
-})
-
-//
 
 //nb places
 let nbPlaces = 4

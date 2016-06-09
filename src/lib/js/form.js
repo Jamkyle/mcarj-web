@@ -2,6 +2,11 @@ import { socket } from './connect'
 
 $('#formReservation').submit(
 (e)=>{
+  e.preventDefault()
+  let datetime = $('#datetime')
+  let clock  = $('#clock')
+
+  console.log(clock.val());
   let name = $('#nom').val()
   let prenom = $('#prenom').val()
   let email = $('#mail').val()
