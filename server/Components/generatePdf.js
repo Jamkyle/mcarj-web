@@ -10,9 +10,9 @@ function getRandomInt(min, max) {
 
 function generator(name){ //génération d'un id
 
-  var x=getRandomInt(0,99);
+  var x = getRandomInt(0,99);
 
-  var generate= name+x;
+  var generate = name+x;
 
   return generate;
 }
@@ -20,13 +20,13 @@ function generator(name){ //génération d'un id
 
 //reçoit en paramétre les données du formulaire de reservation
 exports.generatePdf = function (data) {
-  console.log(data);
+
   var myDoc= new pdf;
-  var desti;
+  var dest;
   const numFac = new Date().toISOString().slice(0, 19).replace(/[^0-9]/g, "")
-  const nomfacture= "facture-"+generator(data.name)+".pdf";
+  const nomfacture = "facture-"+generator(data.name)+".pdf";
   var writeStream = fs.createWriteStream(`./pdf/${nomfacture}`);
-  ( data.company ) ? desti = data.company : desti = data.name+' '+data.fname;
+  ( data.company ) ? dest = data.company : dest = data.name+' '+data.fname;
 
   myDoc.pipe(writeStream);
 
@@ -37,7 +37,7 @@ exports.generatePdf = function (data) {
   myDoc.font('Times-Roman')
 
   .fontSize(18)
-  .text(desti, 150,100);
+  .text(dest, 150,100);
 
   myDoc.font('Times-Roman')
 
@@ -57,15 +57,17 @@ exports.generatePdf = function (data) {
   .fontSize(16)
   .text('MERCI DE VOTRE CONFIANCE !', 175,600);
 
-
-
   myDoc.font('Times-Roman')
 
   .fontSize(45)
   .fillOpacity(0.4)
   .text('Facture', 400,10);
 
+  myDoc.font('Times-Roman')
 
+  .fontSize(45)
+  .fillOpacity(0.4)
+  .text('VROOMCAB', 50,10);
 
   myDoc.rect(50,200, 500,25)
   .lineWidth(3)
@@ -138,7 +140,7 @@ exports.generatePdf = function (data) {
   .fillAndStroke("black", "black")
   .fillOpacity(80)
   .fontSize(12)
-  .text("date",325,235);
+  .text(data.datetime,325,235);
 
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
@@ -163,7 +165,7 @@ exports.generatePdf = function (data) {
   .fillOpacity(80)
   .fontSize(12)
   .text('Trajet',75,350)
-  .text('Lieu de départ : Gare de Denfert', 75, 365)
+  .text('Lieu de départ : 77, bd Saint-Jacques 75014 PARIS', 75, 365)
   .text('Lieu débarquement : Aeroport Orly', 75, 380)
 
   myDoc.font('Times-Roman')
@@ -211,10 +213,6 @@ exports.generatePdf = function (data) {
   .text('TAUX DE TVA        '+'10,00%',370,485)
   .text('TVA                              '+(montant/10),370,510)
   .text('TOTAL                         '+(montant + soustotal),370,535);
-
-
-
-
 
   myDoc.lineCap('butt')
   .moveTo(175, 200)
@@ -279,7 +277,7 @@ exports.generatePdf = function (data) {
   myDoc.font('Times-Roman')
 
   .fontSize(8)
-  .text('VROOMCAB est une marque déposée par la Société', 225,670);
+  .text(" VROOMCAB est une marque déposée par la Société M'CAR'J ", 225,670);
 
   myDoc.font('Times-Roman')
 

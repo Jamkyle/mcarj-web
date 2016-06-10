@@ -23,7 +23,7 @@ GoogleMapsLoader.LANGUAGE = 'fr'
 GoogleMapsLoader.REGION = 'FR'
 
 
-let app = document.querySelector('#app')
+let app = $('#app')
 let script = document.querySelector('#script')
 
 var controller = new ScrollMagic.Controller({
@@ -42,19 +42,27 @@ new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
 .on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
 ).addTo(controller)
-let date = moment()
+let date = moment(), maxDate
 
 
 // dateTime Bootstrap
 let datetime = $('#datetime')
 let clock  = $('#clock')
 
-if(moment().hours() < 6 )
-date = moment().hours(6)
-else if(moment().hours() > 20)
-date = moment().add(1, 'days').hours(6)
+if(moment().local().hours() < 6 )
+  date = moment().hours(6)
+else if(moment().local().hours() > 20)
+  {
+    console.log('supp a 20');
+    date = moment().add(1, 'days').hours(6)
+    // maxDate = moment().add(1, 'days').hours(20).minutes(0)
+  }
 else
-date = moment().add(30, 'minutes')
+  {
+    console.log( moment().local().hours() );
+    date = moment().add(30, 'minutes')
+    // maxDate = moment().hours(20).minutes(0)
+  }
 
 datetime.datetimepicker({
   minDate: moment().hours(0).minutes(-1),
@@ -66,8 +74,8 @@ datetime.datetimepicker({
 
 clock.datetimepicker({
   date : date,
-  minDate : moment().subtract(1, 'seconds'),
-  maxDate : moment().hours(20).minutes(0),
+  // minDate : moment().subtract(1, 'seconds'),
+  // maxDate : maxDate,
   disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23],
   stepping : 30,
   format : 'HH:mm'
@@ -101,7 +109,7 @@ for(let i=0; i<=renderBagage; i++)
 }
 
 $('#slider').carousel({
-  interval : 5000
+  interval : 4000
 })
 $(".slider1").click(function(){
   $("#slider").carousel(0);
@@ -117,7 +125,7 @@ $(".left").click(function(){
 
 $('#openGeneralCondition').click((event)=>{
   event.preventDefault()
-  $('#generalCondition').modal('toggle')
+  window.open('conditiongeneral.html', 'conditions', 'fullscreen=yes')
 })
 
 GoogleMapsLoader.load(google => {
@@ -153,7 +161,6 @@ GoogleMapsLoader.load(google => {
 
   // [START region_fillform]
   function fillInAddress() {
-    console.log('fill');
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
 
@@ -195,6 +202,4 @@ GoogleMapsLoader.load(google => {
     }
   }
 
-}
-
-);
+});

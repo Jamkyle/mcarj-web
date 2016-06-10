@@ -1,12 +1,46 @@
-<h1>Bonjour {{name}} {{fname}}</h1>
-<br>
-<p>
-  Vous avez commander votre Vroomcab <br>
-  Départ : <span style='color:blue'><b>Denfert Rochereaux</b></span> <br>
-  Destination : <span style='color:#2020EE'><b>Aéroport Orly Sud</b></span> <br>
-  jour du départ : <span style='color: #302020'><b>{{datetime}}</b></span> à <span style='color:#302020'><b>{{hours}}</b></span>
-</p>
-<p>
-  Merci de votre confiance.<br>
-  <u>VroomCab</u>
-</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Bon de commande</title>
+    <style media="screen">
+      .blue{
+        color: #42E
+      }
+      .red{
+        color : #E34
+      }
+      .green{
+        color : #2AA3EE
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Bonjour {{fname}} {{name}},</h2>
+    <br>
+    <p>
+      Vous avez commandé votre <b>Vroomcab</b> <br>
+      Départ : <span ><b>Denfert Rochereau (77, bd Saint-Jacques 75014, PARIS)</b></span> <br>
+      Destination : <span ><b>Aéroport Orly SUD/OUEST</b></span> <br>
+      Jour du départ : <span ><b>{{datetime}}</b></span> à <span style='color:#E34'><b>{{hours}}</b></span>
+    </p>
+    <p>
+      Votre voiture Peugeot 508 immatriculée DY-971-KY
+    </p>
+
+    <p>
+      Ci-joint votre facture, <br>
+      <button href="http://192.168.0.14:4200" >Annuler la commande</button>
+    </p>
+    <p class='green'>
+      Merci de votre confiance.<br>
+    </p>
+    <div class="">
+      <u>VroomCab</u>
+      <p>
+        Tel : +33 6 29 20 22 51 <br>
+        Siège : M'CAR'J - 69, rue de la glacière 75013 PARIS
+      </p>
+    </div>
+  </body>
+</html>

@@ -8,7 +8,6 @@ var packs
 $('#simulate').submit(
   (e)=>{
     e.preventDefault()
-
     //recupération des valeurs de dataTime
     datetime = $('#datetime').data('date')
     clock  = $('#clock').data('date')
@@ -20,8 +19,7 @@ $('#simulate').submit(
 )
 
 $('#formReservation').submit(
-(e)=>{
-  e.preventDefault()
+(e) => {
   let name = $('#nom').val()
   let prenom = $('#prenom').val()
   let email = $('#mail').val()
@@ -29,14 +27,6 @@ $('#formReservation').submit(
   let cp = $('#postal_code').val()
   let ville = $('#locality').val()
   let company = $('#nomS').val()
-
-  socket.emit(
-    'generatePdf',
-    {
-      nom: name,
-      prenom : prenom
-    }
-  );
 
   socket.emit(
     'sendMail',
@@ -53,5 +43,7 @@ $('#formReservation').submit(
       nombre : sits
     }
   );
+
+  e.preventDefault()
   console.log("email envoyé");
 })
