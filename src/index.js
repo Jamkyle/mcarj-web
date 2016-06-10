@@ -15,6 +15,12 @@ import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css
 import './lib/js/connect'
 import './lib/js/form'
 
+import GoogleMapsLoader from 'google-maps'
+
+GoogleMapsLoader.KEY = 'AIzaSyCOJ80rJqGMgIpUCnB8VAygYTVOQDIHyMY'
+GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
+GoogleMapsLoader.LANGUAGE = 'fr'
+GoogleMapsLoader.REGION = 'FR'
 
 
 let app = document.querySelector('#app')
@@ -44,11 +50,11 @@ let datetime = $('#datetime')
 let clock  = $('#clock')
 
 if(moment().hours() < 6 )
-  date = moment().hours(6)
+date = moment().hours(6)
 else if(moment().hours() > 20)
-  date = moment().add(1, 'days').hours(6)
+date = moment().add(1, 'days').hours(6)
 else
-  date = moment()
+date = moment().add(30, 'minutes')
 
 datetime.datetimepicker({
   minDate: moment().hours(0).minutes(-1),
@@ -60,7 +66,7 @@ datetime.datetimepicker({
 
 clock.datetimepicker({
   date : date,
-  minDate : moment().subtract(10, 'minutes'),
+  minDate : moment().subtract(1, 'seconds'),
   maxDate : moment().hours(20).minutes(0),
   disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23],
   stepping : 30,
@@ -75,7 +81,7 @@ let nbPlaces = 4
 for(let i=1; i<=nbPlaces; i++)
 {
   let option = $('<option value="'+i+'">'+i+'</option>');
-  $('#tickets').append(option)
+  $('#sits').append(option)
 }
 //bagages
 let currentBagage = 1
@@ -86,8 +92,12 @@ let renderBagage;
 
 for(let i=0; i<=renderBagage; i++)
 {
-  let option = $('<option value="'+i+'">'+i+'</option>');
-  $('#packages').append(option)
+  let selected
+  if(i==1)
+  selected = 'selected'
+  let option = $('<option value="'+i+'"'+selected+' >'+i+'</option>');
+
+  $('#packs').append(option)
 }
 
 $('#slider').carousel({
@@ -109,3 +119,82 @@ $('#openGeneralCondition').click((event)=>{
   event.preventDefault()
   $('#generalCondition').modal('toggle')
 })
+
+GoogleMapsLoader.load(google => {
+
+
+  let myOptions = {
+    autocomplete : {
+      componentRestrictions : {country : "fr"},
+      types: ['geocode']
+    }
+  }
+  var autocomplete, placeSearch
+
+
+  var componentForm = {
+    locality : 'short_name',
+    postal_code : 'short_name'
+  };
+  initAutocomplete()
+  function initAutocomplete() {
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+
+    var val = $('#add')
+
+    autocomplete = new google.maps.places.Autocomplete(val[0], myOptions.autocomplete);
+    autocomplete.addListener('place_changed', fillInAddress);
+
+    // When the user selects an address from the dropdown, populate the address
+    // fields in the form.
+
+  }
+
+  // [START region_fillform]
+  function fillInAddress() {
+    console.log('fill');
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
+
+    for (var component in componentForm) {
+      $('#'+component)[0].value = '';
+      $('#'+component)[0].disabled = false;
+    }
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      console.log(addressType);
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        $('#'+addressType)[0].value = val;
+
+      }
+    }
+  }
+  // [END region_fillform]
+
+  // [START region_geolocation]
+  // Bias the autocomplete object to the user's geographical location,
+  // as supplied by the browser's 'navigator.geolocation' object.
+  function geolocate() {
+    console.log('geolocate');
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        var geolocation = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        var circle = new google.maps.Circle({
+          center: geolocation,
+          radius: position.coords.accuracy
+        });
+        autocomplete.setBounds(circle.getBounds());
+      });
+    }
+  }
+
+}
+
+);

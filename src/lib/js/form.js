@@ -2,6 +2,8 @@ import { socket } from './connect'
 
 var datetime
 var clock
+var sits
+var packs
 // consultation
 $('#simulate').submit(
   (e)=>{
@@ -10,7 +12,8 @@ $('#simulate').submit(
     //recupération des valeurs de dataTime
     datetime = $('#datetime').data('date')
     clock  = $('#clock').data('date')
-
+    sits  = $('#sits').val()
+    packs  = $('#packs').val()
     // show le formulaire
     $('.formulaire').modal('toggle')
   }
@@ -23,8 +26,8 @@ $('#formReservation').submit(
   let prenom = $('#prenom').val()
   let email = $('#mail').val()
   let adress = $('#add').val()
-  let cp = $('#cd').val()
-  let ville = $('#ville').val()
+  let cp = $('#postal_code').val()
+  let ville = $('#locality').val()
   let company = $('#nomS').val()
 
   socket.emit(
@@ -44,9 +47,10 @@ $('#formReservation').submit(
       hours : clock,
       name: name,
       fname : prenom,
-      adress : adress,
+      address : adress,
       CP : { num: cp, ville: ville },
-      company : company
+      company : company,
+      nombre : sits
     }
   );
   console.log("email envoyé");

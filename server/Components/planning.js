@@ -18,7 +18,7 @@ fs.readFile('client_secret.json', function processClientSecrets(err, content) {
   }
   // Authorize a client with the loaded credentials, then call the
   // Google Calendar API.
-  authorize(JSON.parse(content), listEvents);
+  authorize(JSON.parse(content), addEvent);
 });
 
 /**
@@ -94,6 +94,54 @@ function storeToken(token) {
   fs.writeFile(TOKEN_PATH, JSON.stringify(token));
   console.log('Token stored to ' + TOKEN_PATH);
 }
+
+
+/**
+ * add events on the user's primary calendar.
+ *
+ * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
+ */
+function addEvent(auth){
+    var calendar = google.calendar('v3');
+    var event = {
+        'summary': 'VroomCab 2016',
+        'location': 'Denfert',
+        'description': 'Rendez-vous',
+        'start': {
+            'dateTime': '2016-06-08T09:00:00+02:00',
+            'timeZone': 'Europe/Paris',
+        },
+        'end': {
+            'dateTime': '2016-06-08T10:00:00+02:00',
+            'timeZone': 'Europe/Paris',
+        },
+
+        'attendees': [
+            {'email': 'jstyle3003@gmail.com'}
+        ],
+
+    };
+
+  calendar.events.insert({
+      auth: auth,
+      calendarId: 'jstyle3003@gmail.com',
+      sendNotifications:true,
+      resource: event,
+  }, function(err, event) {
+
+      if (err) {
+
+          console.log('There was an error contacting the Calendar service: ' + err);
+          return;
+      }
+      console.log('Event created: %s', event.htmlLink);
+  });
+
+  listEvents(auth)
+
+}
+
+
 
 /**
  * Lists the next 10 events on the user's primary calendar.

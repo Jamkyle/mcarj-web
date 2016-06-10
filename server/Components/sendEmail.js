@@ -32,7 +32,7 @@ var smtpTransport = nodemailer.createTransport({
   }
 });
 
-var sendMail = function(data){
+exports.sendMail = function(data, attach){
 
   var mailOptions = {
     from: "jstyle3003@gmail.com",
@@ -41,8 +41,8 @@ var sendMail = function(data){
     generateTextFromHTML: true,
     html: template(data),
     attachments: [{
-    filename: `facturation-${data.name}.pdf`,
-    path: `../server/pdf/facturation-${data.name}.pdf`,
+    filename: `facturation-${attach}`,
+    path: `../server/pdf/${attach}`,
     contentType: 'application/pdf'
   }], function (err, info) {
      if(err){

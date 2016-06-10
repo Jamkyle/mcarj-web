@@ -41,17 +41,17 @@
           <div class="form-horizontal col-sm-offset-1">
             <div class="form-group col-sm-10">
               <!-- form nb de place -->
-              <div class='col-sm-4 col-lg-4 col-xs-4 form-inline date' id='ticket'>
+              <div class='col-sm-4 col-lg-4 col-xs-4 form-inline date' id='sit'>
                 <label>
                   <i class="fa fa-ticket"></i>
                 </label>
-                <select class="form-control" id="tickets">
+                <select class="form-control" id="sits">
                 </select>
               </div>
               <!-- form nb de valise -->
-              <div class='col-sm-4 col-lg-4 col-xs-4 input-group date' id='package'>
+              <div class='col-sm-4 col-lg-4 col-xs-4 input-group date' id='pack'>
                 <i class="fa fa-suitcase"></i>
-                <select class="form-control" id="packages">
+                <select class="form-control" id="packs">
                 </select>
                 <span class='raleway fn-xs-2'> bagage à main uniquement * </span>
               </div>
@@ -95,12 +95,12 @@
                 <input name="mail" id="mail" type="email" required/>
 
                 <label class="form_col" for="add">Adresse *:</label>
-                <input name="add" id="add" type="text" />
+                <input name="add" id="add" class='autocomplete' type="text" />
 
                 <label class="form_col" for="ville">Ville *:</label>
-                <input name="ville" id="ville" type="text" />
+                <input name="ville" class="" id="locality" type="text" />
                 <label class="form_col" for="cd">Code Postal *:</label>
-                <input name="cd" id="cd" type="text" />
+                <input name="cd" id="postal_code" type="text" />
                 <br /><br />
                 <label class="form_col" for="nomS">Nom de societe (facultatif) :</label>
                 <input name="nomS" id="nomS" type="text" />

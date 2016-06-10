@@ -10,10 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
+    "fs": "0.0.2",
     "google-auth-library": "^0.9.8",
     "googleapis": "^8.0.0",
     "html-to-pdf": "^0.1.11",
+    "lodash": "^4.13.1",
     "nodemailer": "^2.4.2",
+    "pdfkit": "^0.7.2",
     "socket.io": "^1.4.6",
     "swig": "^1.4.2",
     "xoauth2": "^1.1.0"
