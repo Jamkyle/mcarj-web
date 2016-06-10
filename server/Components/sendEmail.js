@@ -1,8 +1,24 @@
 var nodemailer = require("nodemailer");
 var xoauth2 = require('xoauth2');
 var swig = require('swig');
+var htmlToPdf = require('html-to-pdf');
 var template = swig.compileFile('../server/template/template.html');
+var templatePdf = swig.compileFile('../server/template/htmltopdf.html');
 
+exports.generatePdf = function(data){
+  htmlToPdf.convertHTMLString(templatePdf(data), `../server/pdf/facturation-${data.name}.pdf`,
+      function (error, success) {
+         if (error) {
+              console.log('Oh noes! Errorz!');
+              console.log(error);
+          } else {
+              console.log('Woot! Success!');
+              console.log(success);
+              sendMail(data)
+          }
+      }
+  )
+}
 
 var smtpTransport = nodemailer.createTransport({
   service: "Gmail",
@@ -16,15 +32,29 @@ var smtpTransport = nodemailer.createTransport({
   }
 });
 
-exports.sendMail = function(data){
+var sendMail = function(data){
 
   var mailOptions = {
     from: "jstyle3003@gmail.com",
     to: data.destination,
     subject: data.subject,
     generateTextFromHTML: true,
-    html: template(data)
-  };
+    html: template(data),
+    attachments: [{
+    filename: `facturation-${data.name}.pdf`,
+    path: `../server/pdf/facturation-${data.name}.pdf`,
+    contentType: 'application/pdf'
+  }], function (err, info) {
+     if(err){
+       console.error(err);
+       res.send(err);
+     }
+     else{
+       console.log(info);
+       res.send(info);
+     }
+  }
+};
 
   smtpTransport.sendMail(mailOptions, function(error, response) {
     if (error) {

@@ -10,6 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
+    "google-auth-library": "^0.9.8",
+    "googleapis": "^8.0.0",
+    "html-to-pdf": "^0.1.11",
     "nodemailer": "^2.4.2",
     "socket.io": "^1.4.6",
     "swig": "^1.4.2",

@@ -10,6 +10,7 @@ $('#simulate').submit(
     //recupération des valeurs de dataTime
     datetime = $('#datetime').data('date')
     clock  = $('#clock').data('date')
+
     // show le formulaire
     $('.formulaire').modal('toggle')
   }
@@ -21,6 +22,10 @@ $('#formReservation').submit(
   let name = $('#nom').val()
   let prenom = $('#prenom').val()
   let email = $('#mail').val()
+  let adress = $('#add').val()
+  let cp = $('#cd').val()
+  let ville = $('#ville').val()
+  let company = $('#nomS').val()
 
   socket.emit(
     'generatePdf',
@@ -38,7 +43,10 @@ $('#formReservation').submit(
       datetime : datetime,
       hours : clock,
       name: name,
-      fname : prenom
+      fname : prenom,
+      adress : adress,
+      CP : { num: cp, ville: ville },
+      company : company
     }
   );
   console.log("email envoyé");

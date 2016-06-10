@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style >
+  ._left{
+    text-align: left
+  }
+  .header{
+    position: relative;
+    text-align: center;
+    width: 100vw;
+  }
+  .block{
+    display: inline-block;
+    margin: auto 0;
+    padding: 10px 100px;
+    border : 1px solid #444
+  }
+  .destination{
+    position: relative;
+    min-height: 200px;
+    text-align: right;
+  }
+  .destContent{
+    float: right;
+    width: 300px;
+  }
+  .container{
+    padding: 10px;
+    text-align: center;
+  }
+  .content{
+    width: 600px;
+    margin: auto;
+  }
+  .footer{
+    position: absolute;
+    bottom : 0
+  }
+  th{
+    border: 2px solid #222;
+    padding: 10px
+  }
+
+  td{
+    text-align: center;
+    border: 2px solid #222
+  }
+  </style>
+</head>
+<body>
+  <div class="warper">
+    <div class="header">
+      <h1 style='display : inline; margin-right : 100px'>VROOMCAB</h1>
+      <h1 class='block'>Facture</h1>
+      <div class="destination">
+        <div class="destContent _left">
+          <h3>{{ company || name +' '+fname }}</h3>
+          <p>
+            <b>{{adress}}</b>
+            <br>
+            <b>{{CP.num}} {{CP.ville}}</b>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="content">
+        <table>
+          <thead>
+            <tr>
+              <th>
+                N° Facture
+              </th>
+              <th>
+                Nom du client
+              </th>
+              <th>
+                Date de la course
+              </th>
+              <th>
+                Type de Paiement
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                {{ datetime }}
+              </td>
+              <td>
+                {{ name }}
+              </td>
+              <td>
+                {{ datetime }}
+              </td>
+              <td>
+                {{ type }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <tr>
+              <th>
+                DESIGNATION
+              </th>
+
+              <th>
+                MONTANT
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style='text-align: left; width : 500px; font-size : 1.3em'>
+                Trajet : <br>
+                Lieu de d&eacute;part : Denfert Rochereaux <br>
+                Lieu d'arriv&eacute;e : A&eacute;roport Orly Sud
+              </td>
+              <td>
+                10 &euro;
+              </td>
+            </tr>
+            <tr>
+              <td style=' border : none; text-align : right'>
+                Sous-Total
+              </td>
+              <td>
+                10 &euro;
+              </td>
+            </tr>
+            <tr>
+              <td style=' border : none; text-align : right'>
+                TAUX T.V.A
+              </td>
+              <td>
+                10.00%
+              </td>
+            </tr>
+            <tr>
+              <td style='border : none; text-align : right'>
+                  TOTAL
+              </td>
+              <td>
+                12 &euro;
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      Merci de votre Confiance
+    </div>
+    <div class="footer">
+      69, rue de la glaci&egrave;re 75013 PARIS
+    </div>
+  </div>
+</body>
+</html>
