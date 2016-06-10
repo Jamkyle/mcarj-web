@@ -1,5 +1,8 @@
 var nodemailer = require("nodemailer");
 var xoauth2 = require('xoauth2');
+var swig = require('swig');
+var template = swig.compileFile('../server/template/template.html');
+
 
 var smtpTransport = nodemailer.createTransport({
   service: "Gmail",
@@ -20,7 +23,7 @@ exports.sendMail = function(data){
     to: data.destination,
     subject: data.subject,
     generateTextFromHTML: true,
-    html: data.content
+    html: template(data)
   };
 
   smtpTransport.sendMail(mailOptions, function(error, response) {

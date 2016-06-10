@@ -1,0 +1,25 @@
+<style>
+  .dest{
+    color : blue
+  }
+  .vroomcab:before{
+    content : 'Vroomcab';
+    color : orange;
+    font-size : 1.2em
+  }
+  .date{
+    color : cyan;
+  }
+</style>
+<h1>Bonjour {{name}} {{fname}}</h1>
+<br>
+<p>
+  Vous avez commander votre Vroomcab <br>
+  Départ : <span class='dest'><b>Denfert Rochereaux</b></span> <br>
+  Destination : <span class='dest'><b>Aéroport Orly Sud</b></span> <br>
+  jour du départ : <span class='date'>{{datetime}}</span> à <span>{{hours}}</span>
+</p>
+<p>
+  Merci de votre confiance.<br>
+  <u>VroomCab</u>
+</p>

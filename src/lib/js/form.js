@@ -1,12 +1,23 @@
 import { socket } from './connect'
 
+var datetime
+var clock
+// consultation
+$('#simulate').submit(
+  (e)=>{
+    e.preventDefault()
+
+    //recupération des valeurs de dataTime
+    datetime = $('#datetime').data('date')
+    clock  = $('#clock').data('date')
+    // show le formulaire
+    $('.formulaire').modal('toggle')
+  }
+)
+
 $('#formReservation').submit(
 (e)=>{
   e.preventDefault()
-  let datetime = $('#datetime')
-  let clock  = $('#clock')
-
-  console.log(clock.val());
   let name = $('#nom').val()
   let prenom = $('#prenom').val()
   let email = $('#mail').val()
@@ -24,16 +35,11 @@ $('#formReservation').submit(
     {
       subject : "facturation",
       destination : email,
-      content: '<h1>Bonjour monsieur '+ name +' '+ prenom +'</h1> <p> retrouvez votre facturation dans une piece ci-jointe</p>'
+      datetime : datetime,
+      hours : clock,
+      name: name,
+      fname : prenom
     }
   );
   console.log("email envoyé");
 })
-
-
-// consultation
-$('#simulate').submit(
-  ()=>{
-    $('.formulaire').modal('toggle')
-  }
-)

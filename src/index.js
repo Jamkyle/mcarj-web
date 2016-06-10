@@ -38,6 +38,8 @@ let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
 ).addTo(controller)
 let date = moment()
 
+
+// dateTime Bootstrap
 let datetime = $('#datetime')
 let clock  = $('#clock')
 
@@ -49,7 +51,7 @@ else
   date = moment()
 
 datetime.datetimepicker({
-  minDate: moment().hours(-1),
+  minDate: moment().hours(0).minutes(-1),
   maxDate: moment().add(1, 'years').month(11),
   disabledDates:[ moment().subtract(1, 'days') ],
   daysOfWeekDisabled: [0],
@@ -58,12 +60,14 @@ datetime.datetimepicker({
 
 clock.datetimepicker({
   date : date,
-  minDate : moment(),
+  minDate : moment().subtract(10, 'minutes'),
   maxDate : moment().hours(20).minutes(0),
   disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23],
   stepping : 30,
-  format : 'LT'
+  format : 'HH:mm'
 });
+
+
 
 //nb places
 let nbPlaces = 4
