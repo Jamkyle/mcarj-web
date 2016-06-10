@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Socket.io</title>
+</head>
+
+<body>
+
+<h1>Communication avec socket.io !</h1>
+
+<label class="form_col" for="nom">Nom *:</label>
+<input name="nom" id="nom" type="text" required/>
+<span class="tooltip">vous devez entrer votre nom</span>
+<br /><br />
+<label class="form_col" for="prenom">Prénom *:</label>
+<input name="prenom" id="prenom" type="text" required/>
+<span class="tooltip">vous devez entrer votre prenom</span>
+<br /><br />
+<label class="form_col" for="tel">Telephone *:</label>
+<input name="tel" id="tel" type="text" />
+<span class="tooltip"> votre numeros de telephone n'est pas valide</span>
+<br /><br />
+<label class="form_col" for="mail">email *:</label>
+<input name="mail" id="mail" type="email" required/>
+<span class="tooltip">le mail entré n'est pas valide</span>
+
+<label class="form_col" for="add">Adresse *:</label>
+<input name="add" id="add" type="text" />
+<span class="tooltip"> vous devez entrer votre adress</span>
+
+<label class="form_col" for="ville">Ville *:</label>
+<input name="ville" id="ville" type="text" />
+<span class="tooltip"> vous devez entrer un code postale valide</span>
+<label class="form_col" for="cd">Code Postal *:</label>
+<input name="cd" id="cd" type="text" />
+<span class="tooltip"> Vous devez entrer un code postal valide</span>
+<br /><br />
+<label class="form_col" for="nomS">Nom de societe (facultatif) :</label>
+<input name="nomS" id="nomS" type="text" />
+<br /><br />
+<span class="form_col"></span>
+
+<label class="form_col" for="ticket">Nmobre de personne *:</label>
+<input name="ticket" id="ticket" type="text" />
+<span class="tooltip"> vous devez entrer votre adress</span>
+
+<label>
+    <input id='agreeBox' name="attest" type="checkbox" /> J'atteste de l'exactitude des informations données, et accèpte que les conditions
+</label>
+<a href="#" id='openGeneralCondition'>generales d'utilisation</a>
+<br/>
+<span class="tooltip">Vous devez accepter les termes de conditions général d'utilisation</span>
+<br /><br />
+<span class="form_col"></span>
+
+<br /><br />
+
+
+
+<p><input type="button" value="Embêter le serveur" id="poke" /></p>
+
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+
+
+
+    var socket = io.connect('http://localhost:4200');
+
+
+
+    $('#poke').click(function () {
+        {
+            var nom = $('#nom').val();
+            var prenom=$('#prenom').val();
+            var adresse = $('#add').val();
+            var ville=$('#ville').val();
+            var cdpost = $('#cd').val();
+            var nb=$('#ticket').val();
+
+        }
+
+        socket.emit('getNom', nom);
+        socket.emit('getPrenom', prenom);
+        socket.emit('getadd', adresse);
+        socket.emit('getville', ville);
+        socket.emit('getcdpost', cdpost);
+        socket.emit('getnb', nb);
+
+
+        socket.emit('message', 'envoie les donnees');
+    });
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
