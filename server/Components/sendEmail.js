@@ -6,7 +6,7 @@ var template = swig.compileFile('../server/template/template.html');
 var templatePdf = swig.compileFile('../server/template/htmltopdf.html');
 
 exports.generatePdf = function(data){
-  htmlToPdf.convertHTMLString(templatePdf(data), `../server/pdf/facturation-${data.name}.pdf`,
+  htmlToPdf.convertHTMLString(templatePdf(data), '../server/pdf/facturation-'+data.name+'.pdf',
       function (error, success) {
          if (error) {
               console.log('Oh noes! Errorz!');
@@ -41,8 +41,8 @@ exports.sendMail = function(data, attach){
     generateTextFromHTML: true,
     html: template(data),
     attachments: [{
-    filename: `facturation-${attach}`,
-    path: `../server/pdf/${attach}`,
+    filename: 'facturation-'+attach,
+    path: '../server/pdf/'+attach,
     contentType: 'application/pdf'
   }], function (err, info) {
      if(err){

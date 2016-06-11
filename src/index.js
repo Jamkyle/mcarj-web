@@ -44,20 +44,19 @@ let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
 ).addTo(controller)
 var date = moment(), minDate, disabledDates
 
-
 // dateTime Bootstrap
 let datetime = $('#datetime')
 let clock  = $('#clock')
 
 if(moment().hours() < 6 )
-  {
-    date = moment().hours(6)
-    disabledDates = [ moment().subtract(1, 'days') ]
-  }
+{
+  date = moment().hours(6)
+  disabledDates = [ moment().subtract(1, 'days') ]
+}
 else if(moment().hours() >= 20)
 {
   (moment().day() !== 6)?
-    date = moment().add(1, 'days').hours(6)
+  date = moment().add(1, 'days').hours(6)
   : date = moment().add(2, 'days').hours(6)
   disabledDates = [ moment().subtract(1, 'days'), moment() ]
 }
@@ -89,7 +88,7 @@ clock.datetimepicker({
 
 datetime.on('dp.change', (e)=>{
   if(e.date > moment())
-    clock.data('DateTimePicker').minDate(false)
+  clock.data('DateTimePicker').minDate(false)
   else {
     clock.data('DateTimePicker').minDate(minDate)
     clock.data('DateTimePicker').date(moment().add(30, "minutes"))
