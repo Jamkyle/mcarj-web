@@ -2,8 +2,6 @@
   $img1 = '../lib/assets/paris.jpg'
   $img2 = '../lib/assets/saint_augustin_paris.jpg'
 
-
-
 body
   font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.9);
@@ -47,7 +45,11 @@ html, body
     background url($img1) no-repeat 30% 20%
   &-2
     background url($img2) no-repeat 20% 50%
-    background-size 120%
+    background-size 140%
+    @media only screen and (max-width : 620px)
+      background-size 200%
+
+
 #simulate
   min-height 450px!important
   height auto
@@ -71,6 +73,7 @@ html, body
   &_Simulate
     border-radius: 5px
     background-color: rgba(020,020,20,.3)
+
 .simulate
   top 0!important
 @media only screen and (min-device-width : 320px) and (max-device-width:740px)
@@ -121,10 +124,7 @@ html, body
 
 .row-eq-height
   @media screen and (min-width: 460px)
-    display: -webkit-box
-    display: -webkit-flex
-    display: -ms-flexbox
-    display:         flex
+    display: flex
 
 #way
  & h1
@@ -151,5 +151,23 @@ html, body
 .pointer
   cursor pointer
 
+//carousel
+.carousel-indicators
+  bottom 40vh!important
+  @media only screen and (max-width : 420px)
+    bottom 50vh!important
+  @media only screen and (min-width : 720px)
+    bottom 40vh!important
+
+// results
+
+.results
+  margin 10px
+
+.price
+  background-color #36F
+  font-size : 1.3em
+  font-weight : bold
+  color #EEE
 //fonts
 @import './fonts'

@@ -35,34 +35,31 @@ let head = new ScrollMagic.Scene({ triggerElement: "#header" })
 .addTo(controller);
 
 new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
-.setTween(TweenLite.to(".inner", 1, {opacity:'0', ease: Linear.easeNone}))
+.setTween(TweenLite.to(".inner", 1, { opacity:'0', ease: Linear.easeNone }))
 // .addIndicators()
 .addTo(controller);
 
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
 .on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
 ).addTo(controller)
-let date = moment(), maxDate
+var date = moment()
 
 
 // dateTime Bootstrap
 let datetime = $('#datetime')
 let clock  = $('#clock')
 
-if(moment().local().hours() < 6 )
+if(moment().hours() < 6 )
   date = moment().hours(6)
-else if(moment().local().hours() > 20)
-  {
-    console.log('supp a 20');
-    date = moment().add(1, 'days').hours(6)
-    // maxDate = moment().add(1, 'days').hours(20).minutes(0)
-  }
+else if(moment().hours() >= 20)
+{
+  date = moment().add(1, 'days').hours(6)
+}
 else
-  {
-    console.log( moment().local().hours() );
-    date = moment().add(30, 'minutes')
-    // maxDate = moment().hours(20).minutes(0)
-  }
+{
+  date = moment().add(30, 'minutes')
+}
+
 
 datetime.datetimepicker({
   minDate: moment().hours(0).minutes(-1),
@@ -74,13 +71,11 @@ datetime.datetimepicker({
 
 clock.datetimepicker({
   date : date,
-  // minDate : moment().subtract(1, 'seconds'),
-  // maxDate : maxDate,
+  maxDate : moment().hours(20).minutes(0),
   disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23],
   stepping : 30,
   format : 'HH:mm'
 });
-
 
 
 //nb places
@@ -109,11 +104,12 @@ for(let i=0; i<=renderBagage; i++)
 }
 
 $('#slider').carousel({
-  interval : 4000
+  interval : 3000
 })
 $(".slider1").click(function(){
   $("#slider").carousel(0);
 });
+
 $(".slider2").click(function(){
   $("#slider").carousel(1);
 });
@@ -129,7 +125,6 @@ $('#openGeneralCondition').click((event)=>{
 })
 
 GoogleMapsLoader.load(google => {
-
 
   let myOptions = {
     autocomplete : {
@@ -148,15 +143,11 @@ GoogleMapsLoader.load(google => {
   function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
-
     var val = $('#add')
-
     autocomplete = new google.maps.places.Autocomplete(val[0], myOptions.autocomplete);
     autocomplete.addListener('place_changed', fillInAddress);
-
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.
-
   }
 
   // [START region_fillform]

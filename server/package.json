@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.13.4",
-    "fs": "0.0.2",
     "google-auth-library": "^0.9.8",
     "googleapis": "^8.0.0",
     "html-to-pdf": "^0.1.11",
