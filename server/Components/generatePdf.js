@@ -114,7 +114,7 @@ exports.generatePdf = function (data) {
   .fillAndStroke("black", "black")
   .fillOpacity(80)
   .fontSize(12)
-  .text('Nom du passagers',200,210);
+  .text('Nom du passager',200,210);
 
 
   myDoc.font('Times-Roman')

@@ -28,6 +28,9 @@ $('#simulate').submit(
           // show le formulaire
           $('.formulaire').modal('toggle')
           $('#date_depart').text(datetime+' à '+clock)
+          $('#price').text(sits*12.5+' €')
+          $('#nbsits').text(sits)
+          $('#bagage').text(packs)
           e.preventDefault()
         }
       else

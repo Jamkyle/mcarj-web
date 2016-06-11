@@ -42,7 +42,7 @@ new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
 .on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
 ).addTo(controller)
-var date = moment()
+var date = moment(), minDate, disabledDates
 
 
 // dateTime Bootstrap
@@ -50,32 +50,51 @@ let datetime = $('#datetime')
 let clock  = $('#clock')
 
 if(moment().hours() < 6 )
-  date = moment().hours(6)
+  {
+    date = moment().hours(6)
+    disabledDates = [ moment().subtract(1, 'days') ]
+  }
 else if(moment().hours() >= 20)
 {
-  date = moment().add(1, 'days').hours(6)
+  (moment().day() !== 6)?
+    date = moment().add(1, 'days').hours(6)
+  : date = moment().add(2, 'days').hours(6)
+  disabledDates = [ moment().subtract(1, 'days'), moment() ]
 }
 else
 {
   date = moment().add(30, 'minutes')
+  minDate = moment().subtract(1, 'seconds')
+  disabledDates = [ moment().subtract(1, 'days') ]
 }
 
 
 datetime.datetimepicker({
+  date : date,
   minDate: moment().hours(0).minutes(-1),
   maxDate: moment().add(1, 'years').month(11),
-  disabledDates:[ moment().subtract(1, 'days') ],
+  disabledDates: disabledDates,
   daysOfWeekDisabled: [0],
   format : 'DD/MM/YYYY'
 });
 
 clock.datetimepicker({
   date : date,
+  minDate : minDate,
   maxDate : moment().hours(20).minutes(0),
   disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23],
   stepping : 30,
   format : 'HH:mm'
 });
+
+datetime.on('dp.change', (e)=>{
+  if(e.date > moment())
+    clock.data('DateTimePicker').minDate(false)
+  else {
+    clock.data('DateTimePicker').minDate(minDate)
+    clock.data('DateTimePicker').date(moment().add(30, "minutes"))
+  }
+})
 
 
 //nb places
