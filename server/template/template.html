@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>Bon de commande</title>
+    <link href='https://fonts.googleapis.com/css?family=Molle:400italic|Great+Vibes|Raleway' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./css/font-awesome.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <style media="screen">
       .blue{
         color: #42E
@@ -13,34 +16,106 @@
       .green{
         color : #2AA3EE
       }
+      .cyan{
+        color : #00BFFF
+      }
+      .grey{
+        color : #888
+      }
+      .molle{
+        font-family: 'Molle', cursive;
+        font-size: 40px
+      }
+      .greatvibes{
+        font-family: 'Great Vibes', cursive;
+        font-size: 40px
+      }
+      .sign{
+        padding: 10px;
+        font-size: 12px
+      }
+      .raleway{
+        font-family: 'Raleway', sans-serif;
+      }
     </style>
   </head>
   <body>
-    <h2>Bonjour {{fname}} {{name}},</h2>
-    <br>
-    <p>
-      Vous avez commandé votre <b>Vroomcab</b> <br>
-      Départ : <span ><b>Denfert Rochereau (77, bd Saint-Jacques 75014, PARIS)</b></span> <br>
-      Destination : <span ><b>Aéroport Orly SUD/OUEST</b></span> <br>
-      Jour du départ : <span ><b>{{datetime}}</b></span> à <span style='color:#E34'><b>{{hours}}</b></span>
-    </p>
-    <p>
-      Votre voiture Peugeot 508 immatriculée DY-971-KY
-    </p>
+    <div class="panel panel-default">
+      <div class="panel-heading raleway"><h2>Bonjour {{fname}} {{name}},</h2></div>
 
-    <p>
-      Ci-joint votre facture, <br>
-      <button href="http://192.168.0.14:4200" >Annuler la commande</button>
-    </p>
-    <p class='green'>
-      Merci de votre confiance.<br>
-    </p>
-    <div class="">
-      <u>VroomCab</u>
-      <p>
-        Tel : +33 6 29 20 22 51 <br>
-        Siège : M'CAR'J - 69, rue de la glacière 75013 PARIS
-      </p>
+      <div class="panel-body">
+        Vous avez commandé votre <b>Vroomcab</b>
+        <table class='table table-bordered'>
+          <tbody>
+            <tr>
+              <td>
+                Départ :
+              </td>
+              <td>
+                <span class='blue' ><b>Denfert Rochereau - (77, bd Saint-Jacques 75014, PARIS)</b></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Destination :
+              </td>
+              <td>
+                <span class='blue' ><b>Aéroport Orly SUD/OUEST</b></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Jour du départ :
+              </td>
+              <td>
+                <span class='red' ><b>{{datetime}}</b></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Heure du départ :
+              </td>
+              <td>
+                <span style='color:#E34'><b>{{hours}}</b></span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Voiture  :
+              </td>
+              <td>
+                  <span class='green' ><b>Peugeot 508</b></span><br>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                  Matricule :
+              </td>
+              <td>
+                <span class='green'><b>DY-971-KY</b></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Ci-joint votre facture, <br>
+          <a href="http://localhost:4200/cancel/?name=john" >Annuler la commande</a>
+        </p>
+        <p class='green'>
+          Merci de votre confiance.<br>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <span class='greatvibes logo'>Vroomcab</span>
+        <div class="sign">
+          <span style='font-size : 16px' >&#9990;</span> <span class='grey'> : +33 6 29 20 22 51</span><br>
+          <span style='font-size : 18px' >&#9993;</span> <span class='grey' > : M'CAR'J - 69, rue de la glacière 75013 PARIS</span>
+        </div>
+
+      </div>
     </div>
+
+
+
   </body>
 </html>

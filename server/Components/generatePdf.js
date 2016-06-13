@@ -21,12 +21,14 @@ function generator(name){ //génération d'un id
 //reçoit en paramétre les données du formulaire de reservation
 exports.generatePdf = function (data) {
 
+  var name = _.capitalize(data.name)
   var myDoc= new pdf;
   var dest;
   const numFac = new Date().toISOString().slice(0, 19).replace(/[^0-9]/g, "")
   const nomfacture = "facture-"+generator(data.name)+".pdf";
   var writeStream = fs.createWriteStream(`./pdf/${nomfacture}`);
-  ( data.company ) ? dest = data.company : dest = data.name+' '+data.fname;
+  ( data.company ) ? dest = data.company : dest = _.capitalize(data.fname)+' '+name;
+
 
   myDoc.pipe(writeStream);
 
@@ -48,9 +50,6 @@ exports.generatePdf = function (data) {
 
   .fontSize(18)
   .text(data.CP.num+" "+data.CP.ville, 150,150);
-
-
-
 
   myDoc.font('Times-Roman')
 
@@ -117,11 +116,13 @@ exports.generatePdf = function (data) {
   .text('Nom du passager',200,210);
 
 
+ var size = 12-name.length*0.08, position = 220-(name.length)*1.3
+
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
   .fillOpacity(80)
-  .fontSize(12)
-  .text(data.name,200,235);
+  .fontSize(size)
+  .text(name, position, 235);
 
   //Recuperer la date de la course
   myDoc.font('Times-Roman')
@@ -165,8 +166,10 @@ exports.generatePdf = function (data) {
   .fillOpacity(80)
   .fontSize(12)
   .text('Trajet',75,350)
-  .text('Lieu de départ : 77, bd Saint-Jacques 75014 PARIS', 75, 365)
-  .text('Lieu débarquement : Aeroport Orly', 75, 380)
+  .text('Lieu de départ : ', 75, 365)
+  .text('77, bd Saint-Jacques 75014 PARIS', 80, 375)
+  .text('Lieu de dépose : ', 75, 385)
+  .text('Aéroport Orly', 80, 395)
 
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")

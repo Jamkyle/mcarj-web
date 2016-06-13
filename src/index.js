@@ -5,6 +5,7 @@ import 'jquery'
 import { googlefonts } from 'googlefonts'
 import './lib/main.styl'
 import './lib/js/map'
+
 import 'font-awesome/css/font-awesome.min.css'
 
 import 'moment'
@@ -12,8 +13,10 @@ import 'moment'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+
 import './lib/js/connect'
 import './lib/js/form'
+import './lib/js/slider'
 
 import GoogleMapsLoader from 'google-maps'
 
@@ -50,7 +53,9 @@ let clock  = $('#clock')
 
 if(moment().hours() < 6 )
 {
-  date = moment().hours(6)
+  (moment().day() !== 6)?
+    date = moment().hours(6)
+  : date = moment().add(1, 'days').hours(6)
   disabledDates = [ moment().subtract(1, 'days') ]
 }
 else if(moment().hours() >= 20)
@@ -66,7 +71,6 @@ else
   minDate = moment().subtract(1, 'seconds')
   disabledDates = [ moment().subtract(1, 'days') ]
 }
-
 
 datetime.datetimepicker({
   date : date,
@@ -86,6 +90,15 @@ clock.datetimepicker({
   format : 'HH:mm'
 });
 
+if(moment().day() === 0){
+  console.log('true');
+  let demain = moment().add(1, 'days')
+  datetime.data('DateTimePicker').date(demain)
+  clock.data('DateTimePicker').minDate(false)
+  clock.data('DateTimePicker').date(moment().hours(6))
+  }
+
+
 datetime.on('dp.change', (e)=>{
   if(e.date > moment())
   clock.data('DateTimePicker').minDate(false)
@@ -95,7 +108,6 @@ datetime.on('dp.change', (e)=>{
   }
 })
 
-
 //nb places
 let nbPlaces = 4
 
@@ -104,6 +116,7 @@ for(let i=1; i<=nbPlaces; i++)
   let option = $('<option value="'+i+'">'+i+'</option>');
   $('#sits').append(option)
 }
+
 //bagages
 let currentBagage = 1
 let totalBagages = 4 - currentBagage
@@ -120,22 +133,12 @@ for(let i=0; i<=renderBagage; i++)
 
   $('#packs').append(option)
 }
-
-$('#slider').carousel({
-  interval : 3000
+$('.dismiss-alert-danger').click((e)=>{
+  $('.alert-danger').hide()
+  e.preventDefault()
 })
-$(".slider1").click(function(){
-  $("#slider").carousel(0);
-});
 
-$(".slider2").click(function(){
-  $("#slider").carousel(1);
-});
 
-// Enable Carousel Controls
-$(".left").click(function(){
-  $("#slider").carousel("prev");
-});
 
 $('#openGeneralCondition').click((event)=>{
   event.preventDefault()
@@ -152,7 +155,6 @@ GoogleMapsLoader.load(google => {
   }
   var autocomplete, placeSearch
 
-
   var componentForm = {
     locality : 'short_name',
     postal_code : 'short_name'
@@ -161,7 +163,7 @@ GoogleMapsLoader.load(google => {
   function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
-    var val = $('#add')
+    var val = $('.autocomplete')
     autocomplete = new google.maps.places.Autocomplete(val[0], myOptions.autocomplete);
     autocomplete.addListener('place_changed', fillInAddress);
     // When the user selects an address from the dropdown, populate the address

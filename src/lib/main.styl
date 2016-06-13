@@ -2,6 +2,8 @@
   $img1 = '../lib/assets/paris.jpg'
   $img2 = '../lib/assets/saint_augustin_paris.jpg'
 
+@import './mixins'
+
 body
   font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.9);
@@ -11,6 +13,68 @@ html, body
   margin 0
 ._left
   position relative
+
+.drop-shadow {
+    position:relative;
+    width:40%;
+    padding:10px;
+    background:#4466ff;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    border-radius 7px
+}
+.drop-shadow:before,
+.drop-shadow:after {
+    content:"";
+    position:absolute;
+    z-index:-2;
+}
+
+.curved:before {
+    top:10px;
+    bottom:10px;
+    left:0;
+    right:50%;
+    -webkit-box-shadow:0 0 15px rgba(0,0,0,0.6);
+    -moz-box-shadow:0 0 15px rgba(0,0,0,0.6);
+    box-shadow:0 0 15px rgba(0,0,0,0.6);
+    -moz-border-radius:10px / 100px;
+    border-radius:10px / 100px;
+}
+.curved-hz-2:before {
+    top:0;
+    bottom:0;
+    left:10px;
+    right:10px;
+    -moz-border-radius:100px / 10px;
+    border-radius:100px / 10px;
+}
+
+.curled {
+    border:1px solid #efefef;
+    -moz-border-radius:0 0 120px 120px / 0 0 6px 6px;
+	 border-radius:0 0 120px 120px / 0 0 6px 6px;
+}
+
+.curled:before,
+.curled:after {
+    bottom:12px;
+    left:10px;
+    width:50%;
+    height:55%;
+    max-width:200px;
+    max-height:100px;
+    -webkit-box-shadow:0 8px 12px rgba(0, 0, 0, 0.5);
+       -moz-box-shadow:0 8px 12px rgba(0, 0, 0, 0.5);
+	    box-shadow:0 8px 12px rgba(0, 0, 0, 0.5);
+    -webkit-transform:skew(-8deg) rotate(-3deg);
+       -moz-transform:skew(-8deg) rotate(-3deg);
+	-ms-transform:skew(-8deg) rotate(-3deg);
+	 -o-transform:skew(-8deg) rotate(-3deg);
+	    transform:skew(-8deg) rotate(-3deg);
+}
+
 
 //Pattern Bg
 .stripes
@@ -22,7 +86,7 @@ html, body
 
 //parallax
 .parallaxParent
-  height 120vh
+  height 110vh
   overflow hidden
   text-align center
   @media (max-device-width: 1024px)
@@ -37,18 +101,29 @@ html, body
      width 100%
      height 100%
 
+.img
+  z-index 1
+
+.bg, .img
+  pos absolute 0 0 0 0
+
+.bg
+  opacity 0.7
+  z-index 2
+  background 0px 0px no-repeat linear-gradient(45deg, hsla(208, 100%, 19%, 1) 0%, hsla(208, 100%, 19%, 0) 70%),linear-gradient(135deg, hsla(0, 0%, 0%, 1) 10%, hsla(0, 0%, 0%, 0) 80%),linear-gradient(225deg, hsla(201, 100%, 16%, 1) 10%, hsla(201, 100%, 16%, 0) 80%),linear-gradient(315deg, hsla(0, 0%, 29%, 1) 100%, hsla(0, 0%, 29%, 0) 70%);
+
 .slider
-  background-size cover
   width 100%
   height 100%
   &-1
-    background url($img1) no-repeat 30% 20%
+    .img
+      background url($img1) no-repeat 30% 20%
   &-2
-    background url($img2) no-repeat 20% 50%
-    background-size 140%
-    @media only screen and (max-width : 620px)
-      background-size 200%
-
+    .img
+      background url($img2) no-repeat 20% 50%
+      background-size 140%
+      @media only screen and (max-width : 620px)
+        background-size 200%
 
 #simulate
   min-height 450px!important
@@ -67,8 +142,7 @@ html, body
     color #FEFEFE
     background-color rgba(020,20,20,0.8)
 .inner
-  top 50%
-  z-index 1
+  top 40%
   color #fff
   &_Simulate
     border-radius: 5px
@@ -99,7 +173,7 @@ html, body
   filter: blur(2px);
 
 .logo
-  height 300px
+  font-size 100px
 
  //Form
 .form
@@ -148,10 +222,10 @@ html, body
     border #202020
     background #F2F2F2
     color #101010
+
 .pointer
   cursor pointer
 
-//carousel
 .carousel-indicators
   bottom 40vh!important
   @media only screen and (max-width : 420px)
@@ -159,8 +233,15 @@ html, body
   @media only screen and (min-width : 720px)
     bottom 40vh!important
 
-// results
+//modal
+.modal.modal-wide .modal-dialog {
+  width: 90%;
+}
+.modal-wide .modal-body {
+  overflow-y: auto;
+}
 
+// results
 .results
   margin 10px
 
@@ -169,5 +250,7 @@ html, body
   font-size : 1.3em
   font-weight : bold
   color #EEE
+
+
 //fonts
 @import './fonts'

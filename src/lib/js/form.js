@@ -12,13 +12,14 @@ $('#simulate').submit(
     datetime = $('#datetime').data('date')
     clock  = $('#clock').data('date')
     let datetimepicker = $('#datetime').data('DateTimePicker')
-    let day = datetimepicker.date().date()
-    let month = datetimepicker.date().month()
-    let year = $('#datetime').data('DateTimePicker').date().year()
+    // let day = datetimepicker.date().date()
+    // let month = datetimepicker.date().month()
+    // let year = $('#datetime').data('DateTimePicker').date().year()
     let hours = $('#clock').data('DateTimePicker').date().hours()
     let minutes = $('#clock').data('DateTimePicker').date().minutes()
     // if(moment() < moment(datetime).hours(clock))
-      if( moment() < moment().date(day).month(month).year(year).hours(hours).minutes(minutes)
+    // moment().date(day).month(month).year(year).hours(hours).minutes(minutes)
+      if( moment() < datetimepicker.getMoment(datetime).hours(hours).minutes(minutes)
           && datetimepicker.getMoment().isValid()
           && hours >= 6 && hours <20
         )
@@ -35,6 +36,8 @@ $('#simulate').submit(
         }
       else
         {
+          $('.alert-danger').show()
+          
           e.preventDefault()
 
         }
@@ -70,6 +73,10 @@ $('#formReservation').submit(
     }
   );
 
+  socket.on('send_success', (message) => {
+    $('.alert').removeClass('hidden')
+  } )
+
   e.preventDefault()
-  console.log("email envoyé");
+
 })

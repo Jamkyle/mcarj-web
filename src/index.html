@@ -9,19 +9,30 @@
   <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <section id="header" class="parallaxParent">
+  <section id="header" class="parallaxParent ">
     <div id='slider' class="bg_head carousel slide">
       <div class="carousel-inner slider" role='listbox'>
+
         <div class='slider-1 slider item active'>
+          <div class="img">
+            <div class="bg">
+            </div>
+          </div>
           <div class="inner carousel-caption">
-            <p class='raleway fn-sm-3 fn-xs-2'>VROOMCAB VOUS PROPOSE</p>
-            <h1 class='abel fn-lg-5 fn-sm-5 fn-xs-5' style='font-weight : 600; color : yellow'>DENFERT ORLY POUR 12.50€</h1>
-            <button class='btn btn-primary'type="button" name="button">Reserver Maintenant</button>
+            <div>
+              <span class='logo Montez'>Vroomcab</span>
+            </div>
+            <p class='raleway fn-sm-3 fn-xs-2'>vous propose un allé</p>
+            <span class='abel fn-lg-4 fn-sm-2 fn-xs-1' style='font-weight : 600; color : yellow'>DENFERT - ORLY à <span class='drop-shadow curled curved-hz-2' style='color: #eee'>12.50€</span> </span>
             <p class='raleway welcom fn-sm-3 fn-xs-2'>Un voyage dans le confort et la tranquilité</p>
           </div>
         </div>
         <div class='slider-2 slider item'>
-          <div class="inner carousel-caption">
+          <div class="img">
+            <div class="bg">
+            </div>
+          </div>
+          <div class="inner carousel-caption item">
             <p class='raleway fn-sm-3 fn-xs-2'>VENEZ DECOUVRIR PARIS</p>
             <h1 class='abel fn-lg-5 fn-sm-5 fn-xs-5' style='font-weight : 600; color : cyan'>Dans une voiture Peugeot 508</h1>
             <p class='raleway fn-sm-3 fn-xs-2' style='color : yellow'>avec wifi à bord, de l'eau et musique de votre choix</p>
@@ -36,10 +47,9 @@
     <div class='simulate container-fluid'>
       <h1 class='raleway' style="font-weight: 600">Réserver dès maintenant votre place</h1>
       <div id='way' class="row col-lg-10 col-sm-10 col-sm-offset-1 col-lg-offset-1 inner_Simulate">
-        <div class="error tooltip">
-          <p>
-            verifiez que l'heure ou la date est dans les plages horaires
-          </p>
+        <div class="alert alert-danger fade in" style='display: none' role='alert'>
+          <a href="#" class='close dismiss-alert-danger' aria-label="close" >&times;</a>
+          <strong>Attention!</strong> Veuillez vérifier la date et l'heure que vous avez demandé
         </div>
         <form class='form row'>
           <h5>Pour Denfert Orly</h5>
@@ -81,9 +91,10 @@
           <button class="btn btn-info form_button" type="submit" id='consult' >consulter</button>
         </form>
       </div>
-      <div class="modal fade formulaire" tabindex="-1" role='dialog' aria-labelledby='formulaire-resa'>
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+      <div class="modal fade modal-wide formulaire " tabindex="-1" role='dialog' aria-labelledby='formulaire-resa'>
+
+        <div class="modal-dialog ">
+          <div class="modal-content ">
             <div class="modal-header">
               <h4> Détail de votre commande </h4>
             </div>
@@ -153,32 +164,40 @@
             </div>
             <div class="modal-body">
               <form id="formReservation" class='form form-group'>
+
                 <label class="form_col" for="nom">Nom *:</label>
-                <input name="nom" id="nom" type="text" required/>
+                <input name="nom" id="nom" type="text" class='form-control' required/>
                 <label class="form_col" for="prenom">Prénom *:</label>
-                <input name="prenom" id="prenom" type="text" required/>
+                <input name="prenom" id="prenom" type="text" class='form-control' required/>
                 <label class="form_col" for="tel">Telephone *:</label>
-                <input name="tel" id="tel" type="text" />
+                <input name="tel" id="tel" type="text" class='form-control' />
                 <label class="form_col" for="mail">email *:</label>
-                <input name="mail" id="mail" type="email" required/>
+                <input name="mail" id="mail" type="email" class='form-control' required/>
                 <label class="form_col" for="add">Adresse *:</label>
-                <input name="add" id="add" class='autocomplete' type="text" />
+                <input name="add" id="add" class="form-control raleway input-lg fn-xs-1 fn-sm-2 origin autocomplete" type="text" />
                 <label class="form_col" for="ville">Ville *:</label>
-                <input name="ville" class="" id="locality" type="text" />
+                <input name="ville" class='form-control' id="locality" type="text" />
                 <label class="form_col" for="cd">Code Postal *:</label>
-                <input name="cd" id="postal_code" type="text" />
+                <input name="cd" id="postal_code" class='form-control' type="text" />
                 <label class="form_col" for="nomS">Nom de societe (facultatif) :</label>
-                <input name="nomS" id="nomS" type="text" />
+                <input name="nomS" id="nomS" class='form-control' type="text" />
                 <span class="form_col"></span>
                 <label>
-                  <input id='agreeBox' name="attest" type="checkbox" required /> J'atteste de l'exactitude des informations données, et accèpte que les conditions
+                  <input id='agreeBox' name="attest" type="checkbox" required /> J'atteste de l'exactitude des informations données, et accèpte les conditions
                 </label>
                 <a href="#" id='openGeneralCondition'>generales d'utilisation</a>
                 <br/>
-                <span class="tooltip">Vous devez accepter les termes de conditions général d'utilisation</span>
+                <div class="alert alert-danger fade in" data-name='condition' style='display: none' role='alert'>
+                  <a href="#" class='close dismiss-alert-condition' data-target='condition' aria-label="close" >&times;</a>
+                  <strong>Oups, petit souci!</strong> Vous devez accépter les conditions d'utilisations
+                </div>
                 <br /><br />
                 <span class="form_col"></span>
-                <button type="submit" name="reservation" class="form_button" id='submitReservation'>Reserver ma place</button>
+                <button type="submit" class="form_button" id='submitReservation' > Confirmer la Réservation </button>
+                <div class="alert hidden alert-success fade in" role='alert'>
+                  <a href="#" class='close send_success' aria-label="close" >&times;</a>
+                  <strong>Success!</strong> Votre message a bien été envoyé
+                </div>
               </form>
             </div>
           </div>
@@ -189,7 +208,7 @@
   </section>
   <section id="info">
     <div class="container-fluid">
-      <h1 class='raleway'>VROOMCAB vous propose</h1>
+      <h1 class='raleway'><span class='Merienda'>Vroomcab</span> vous propose</h1>
       <div class="row-eq-height col-lg-10 col-lg-offset-1">
         <div class="col-sm-4 panel panel-default">
           <div class="panel-title">
