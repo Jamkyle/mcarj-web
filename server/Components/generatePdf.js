@@ -3,6 +3,7 @@ var fs = require('fs');
 var pdf =require('pdfkit');
 var _ = require('lodash');
 var sendEmail = require('./sendEmail.js');
+var config = require('../config.js');
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -19,7 +20,7 @@ function generator(name){ //génération d'un id
 
 
 //reçoit en paramétre les données du formulaire de reservation
-exports.generatePdf = function (data) {
+module.exports = (data) => {
 
   var name = _.capitalize(data.name)
   var myDoc= new pdf;

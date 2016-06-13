@@ -1,12 +1,15 @@
 var nodemailer = require("nodemailer");
+var fs = require('fs')
+var google = require('googleapis');
+var googleAuth = require('google-auth-library');
 var xoauth2 = require('xoauth2');
 var path = require('path');
 var swig = require('swig-email-templates');
 var htmlToPdf = require('html-to-pdf');
-var server = require('../server.js')
+var server = require('../server.js');
+var Config =  require('../config.js');
 
 // var templatePdf = swig.compileFile('../server/template/htmltopdf.html');
-
 // exports.generatePdf = function(data){
 //   htmlToPdf.convertHTMLString(templatePdf(data), '../server/pdf/facturation-'+data.name+'.pdf',
 //   function (error, success) {
@@ -22,20 +25,18 @@ var server = require('../server.js')
 // )
 // }
 
-
-var smtpTransport = nodemailer.createTransport({
-  service: "Gmail",
-  auth: {
-    xoauth2: xoauth2.createXOAuth2Generator({
-      user: 'jstyle3003@gmail.com',
-      clientId: '683711024292-410b1n66lipdvkr0pft77d3bhsm9tukv.apps.googleusercontent.com',
-      clientSecret: '0gRMJ8igXVptg4SC99BHtc3c',
-      refreshToken: "1/xLxp5hkZPr-Px32Ssi48_dMiPK8aKPhLMpWRcgBiQFc"
-    })
-  }
-});
-
 exports.sendMail = function(data, attach){
+  var smtpTransport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      xoauth2: xoauth2.createXOAuth2Generator({
+        user: Config.client.mail,
+        clientId: Config.client.id,
+        clientSecret: Config.client.secret,
+        refreshToken: Config.client.token
+      })
+    }
+  });
 
   var templates = new swig({
     root: path.join(__dirname, "../template")
@@ -44,7 +45,7 @@ exports.sendMail = function(data, attach){
  templates.render('template.html', data, function(err, html, text) {
 
    var mailOptions = {
-     from: "jstyle3003@gmail.com",
+     from: Config.client.mail,
      to: data.destination,
      subject: data.subject,
      generateTextFromHTML: true,
