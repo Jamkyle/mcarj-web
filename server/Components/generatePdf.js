@@ -169,7 +169,7 @@ module.exports = (data) => {
   .text('Trajet',75,350)
   .text('Lieu de départ : ', 75, 365)
   .text('77, bd Saint-Jacques 75014 PARIS', 80, 375)
-  .text('Lieu de dépose : ', 75, 385)
+  .text('Lieu de dépot : ', 75, 385)
   .text('Aéroport Orly', 80, 395)
 
   myDoc.font('Times-Roman')
