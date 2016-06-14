@@ -169,7 +169,7 @@ module.exports = (data) => {
   .text('Trajet',75,350)
   .text('Lieu de départ : ', 75, 365)
   .text('77, bd Saint-Jacques 75014 PARIS', 80, 375)
-  .text('Lieu de dépose : ', 75, 385)
+  .text('Lieu de dépot : ', 75, 385)
   .text('Aéroport Orly', 80, 395)
 
   myDoc.font('Times-Roman')
@@ -205,19 +205,18 @@ module.exports = (data) => {
   .fontSize(12)
   .text('MONTANT',455,310);
 
-  var montant = data.nombre*12.5;
-  var TVA = montant / 10;
-  var soustotal = montant * 0.9;
+  var montant=data.nombre*12.5;
+  var soustotal= montant * 0.9;
 
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
   .fillOpacity(80)
   .fontSize(12)
   .text('€            '+soustotal, 455, 365)
-  .text('SOUS-TOTAL              '+soustotal, 370,460)
-  .text('TAUX DE TVA        '+'10,00%', 370,485)
-  .text('TVA                              ' + TVA ,370,510)
-  .text('TOTAL                         '+(TVA + soustotal), 370,535);
+  .text('SOUS-TOTAL              '+soustotal,370,460)
+  .text('TAUX DE TVA        '+'10,00%',370,485)
+  .text('TVA                              '+(montant/10),370,510)
+  .text('TOTAL                         '+(montant),370,535);
 
   myDoc.lineCap('butt')
   .moveTo(175, 200)
