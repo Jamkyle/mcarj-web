@@ -159,12 +159,15 @@ GoogleMapsLoader.load(google => {
     locality : 'short_name',
     postal_code : 'short_name'
   };
-  initAutocomplete()
+
+  google.maps.event.addDomListener(window, 'load', initAutocomplete)
+
   function initAutocomplete() {
     // Create the autocomplete object, restricting the search to geographical
     // location types.
-    var val = $('.autocomplete')
+    var val = $('#add')
     autocomplete = new google.maps.places.Autocomplete(val[0], myOptions.autocomplete);
+
     autocomplete.addListener('place_changed', fillInAddress);
     // When the user selects an address from the dropdown, populate the address
     // fields in the form.

@@ -12,7 +12,6 @@
   <section id="header" class="parallaxParent ">
     <div id='slider' class="bg_head carousel slide">
       <div class="carousel-inner slider" role='listbox'>
-
         <div class='slider-1 slider item active'>
           <div class="img">
             <div class="bg">
@@ -20,10 +19,10 @@
           </div>
           <div class="inner carousel-caption">
             <div>
-              <span class='logo Rochester'>vroomcab</span>
+              <span class='logo lily'>vroomcab</span>
             </div>
             <p class='raleway fn-sm-3 fn-xs-2'>vous propose un allé</p>
-            <span class='abel fn-lg-4 fn-sm-2 fn-xs-1' style='font-weight : 600; color : yellow'>DENFERT - ORLY à <span class='drop-shadow curled curved-hz-2' style='color: #eee'>12.50€</span> </span>
+            <span class='abel fn-lg-5 fn-xs-4 ' style='font-weight : 600; color : yellow'>DENFERT - ORLY à <span class='drop-shadow ' style='color: #eee'>12.50€</span> </span>
             <p class='raleway welcom fn-sm-3 fn-xs-2'>Un voyage dans le confort et la tranquilité</p>
           </div>
         </div>
@@ -34,7 +33,7 @@
           </div>
           <div class="inner carousel-caption item">
             <p class='raleway fn-sm-3 fn-xs-2'>VENEZ DECOUVRIR PARIS</p>
-            <h1 class='abel fn-lg-5 fn-sm-5 fn-xs-5' style='font-weight : 600; color : cyan'>Dans une voiture Peugeot 508</h1>
+            <h1 class='abel fn-lg-5 fn-sm-5 fn-xs-4' style='font-weight : 600; color : cyan'>Dans une voiture Peugeot 508</h1>
             <p class='raleway fn-sm-3 fn-xs-2' style='color : yellow'>avec wifi à bord, de l'eau et musique de votre choix</p>
           </div>
         </div>
@@ -43,52 +42,51 @@
 
     <!-- <img id='logo' class='img' src="./lib/src/stars.png" /> -->
   </section>
+
   <section id="simulate" class='parallaxParent subtleDots'>
     <div class='simulate container-fluid'>
       <h1 class='raleway' style="font-weight: 600">Réserver dès maintenant votre place</h1>
-      <div id='way' class="row col-lg-10 col-sm-10 col-sm-offset-1 col-lg-offset-1 inner_Simulate">
+      <div id='way' class="row col-lg-10 col-sm-10 col-sm-offset-1 col-lg-offset-1 inner-shadow drop-shadow curved curved-hz-2 ">
         <div class="alert alert-danger fade in" style='display: none' role='alert'>
           <a href="#" class='close dismiss-alert-danger' aria-label="close" >&times;</a>
           <strong>Attention!</strong> Veuillez vérifier la date et l'heure que vous avez demandé
         </div>
         <form class='form row'>
           <h5>Pour Denfert Orly</h5>
-          <div class="form-horizontal col-sm-offset-1">
-            <div class="form-group col-sm-10">
-              <!-- form nb de place -->
-              <div class="form-group form-inline">
-                <div class='col-sm-4 col-lg-4 col-xs-4 input-group date' id='sit'>
-                  <select class="form-control" id="sits">
-                  </select>
-                    <i class="fa fa-ticket"></i>
-                    <span class='raleway fn-xs-2'> nombre de passager </span>
-                </div>
-                <!-- form nb de valise -->
-                <div class='col-sm-4 col-lg-4 col-xs-4 input-group date' id='pack'>
-                  <select class="form-control" id="packs">
-                  </select>
-                  <i class="fa fa-suitcase"></i>
-                  <span class='raleway fn-xs-2'> bagage à main uniquement * </span>
-                </div>
+          <div class="form-group col-sm-10 col-sm-offset-3 col-xs-offset-2">
+            <!-- form nb de place -->
+            <div class="form-group form-inline">
+              <div class='col-sm-4 col-lg-4 col-xs-10 input-group date' id='sit'>
+                <i class="fa fa-ticket"></i>
+                <span class='raleway fn-xs-2'> nombre de passager </span>
+                <select class="form-control" id="sits">
+                </select>
               </div>
-
-              <div class="col-sm-10 form-group form-inline">
-                <div class='col-sm-4 col-lg-4 col-xs-4 input-group date' id='datetime'>
-                  <input type='text' class="form-control" required="true"/>
-                  <span class="input-group-addon">
-                    <span class="fa fa-calendar"></span>
-                  </span>
-                </div>
-                <div class="col-sm-4 col-lg-3 col-xs-4 input-group" id='clock'>
-                  <input type='text' class="form-control" required="true"/>
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-time pointer"></span>
-                  </span>
-                </div>
+              <!-- form nb de valise -->
+              <div class='col-sm-4 col-lg-4 col-xs-10 input-group date' id='pack'>
+                <i class="fa fa-suitcase"></i>
+                <span class='raleway fn-xs-2'> bagage à main uniquement * </span>
+                <select class="form-control" id="packs">
+                </select>
               </div>
             </div>
+
+            <div class="col-xs-10 form-group form-inline">
+              <div class='col-sm-4 col-lg-4 col-xs-10 input-group date' id='datetime'>
+                <input type='text' class="form-control" required="true"/>
+                <span class="input-group-addon">
+                  <span class="fa fa-calendar"></span>
+                </span>
+              </div>
+              <div class="col-sm-4 col-lg-3 col-xs-10 input-group" id='clock'>
+                <input type='text' class="form-control" required="true"/>
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time pointer"></span>
+                </span>
+              </div>
+              <button class="btn btn-info form_button" type="submit" id='consult' >consulter</button>
+            </div>
           </div>
-          <button class="btn btn-info form_button" type="submit" id='consult' >consulter</button>
         </form>
       </div>
       <div class="modal fade modal-wide formulaire " tabindex="-1" role='dialog' aria-labelledby='formulaire-resa'>

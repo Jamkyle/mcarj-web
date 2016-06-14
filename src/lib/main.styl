@@ -14,16 +14,16 @@ html, body
 ._left
   position relative
 
-.drop-shadow {
-    position:relative;
+.drop-shadow
+  position:relative;
+  @media (min-width : 1240px)
     width:40%;
-    padding:10px;
-    background:#4466ff;
-    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-	    box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    border-radius 7px
-}
+  padding:10px;
+  -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  border-radius 7px
+
 .drop-shadow:before,
 .drop-shadow:after {
     content:"";
@@ -91,11 +91,10 @@ html, body
   text-align center
   @media (max-device-width: 1024px)
     height 100vh
-  for i in (0..1)
-    & > div:nth-child({i+1})
-      position relative
-      height 150%
-      top -50% - (i*130%)
+  & > div:nth-child(1)
+    position relative
+    height 150%
+    top -50%
 .bg
   &_head
      width 100%
@@ -118,18 +117,29 @@ html, body
   &-1
     .img
       background url($img1) no-repeat 30% 20%
+      background-size cover
   &-2
     .img
       background url($img2) no-repeat 20% 50%
-      background-size 140%
-      @media only screen and (max-width : 620px)
-        background-size 200%
+      background-size cover
 
 #simulate
-  min-height 450px!important
   height auto
-  overflow visible!important
   padding-bottom 10%
+  &:before
+    z-index: 0;
+    position: absolute;
+    top 0
+    left 0%
+    width 100%
+    height 110vh
+    content: "";
+    box-shadow: 0 5px 10px #777;
+    @media (max-device-width: 1024px)
+      height 100vh
+  &:after
+    content: ''
+    margin-bottom 10%
 .header
   opacity 0.5
   & .img
@@ -141,26 +151,29 @@ html, body
     padding-right 10px
     color #FEFEFE
     background-color rgba(020,20,20,0.8)
+
+
+
 .inner
   top 40%
   color #fff
-  &_Simulate
+  &-shadow
     border-radius: 5px
-    background-color: rgba(020,020,20,.3)
+    background-color: rgba(200,200,200,.5)
+
+
 
 .simulate
   top 0!important
 @media only screen and (min-device-width : 320px) and (max-device-width:740px)
   .title
     margin-bottom -2.5em
-  #info
-    height 130vh
     @media (orientation: landscape)
-      height 200vw
       .title
         margin-bottom -10%
 .welcom
   color #67E3A7
+
 .description
   color #F2F2F2
   font-size 1.2em
@@ -250,7 +263,6 @@ html, body
   font-size : 1.3em
   font-weight : bold
   color #EEE
-
 
 //fonts
 @import './fonts'
