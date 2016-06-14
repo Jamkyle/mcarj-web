@@ -216,7 +216,7 @@ module.exports = (data) => {
   .text('SOUS-TOTAL              '+soustotal,370,460)
   .text('TAUX DE TVA        '+'10,00%',370,485)
   .text('TVA                              '+(montant/10),370,510)
-  .text('TOTAL                         '+(montant + soustotal),370,535);
+  .text('TOTAL                         '+(montant),370,535);
 
   myDoc.lineCap('butt')
   .moveTo(175, 200)
