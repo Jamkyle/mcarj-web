@@ -4,7 +4,7 @@ import 'imports?define=>false!ScrollMagicGSAP'
 import 'jquery'
 import { googlefonts } from 'googlefonts'
 import './lib/main.styl'
-import './lib/js/map'
+import _ from 'lodash'
 
 import 'font-awesome/css/font-awesome.min.css'
 
@@ -160,9 +160,10 @@ GoogleMapsLoader.load(google => {
     postal_code : 'short_name'
   };
 
-  google.maps.event.addDomListener(window, 'load', initAutocomplete)
+  $('#add').on('focus', initAutocomplete);
 
-  function initAutocomplete() {
+  function initAutocomplete(){
+
     // Create the autocomplete object, restricting the search to geographical
     // location types.
     var val = $('#add')
@@ -177,7 +178,7 @@ GoogleMapsLoader.load(google => {
   function fillInAddress() {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
-
+    var address = $('#add').val().split(',')
     for (var component in componentForm) {
       $('#'+component)[0].value = '';
       $('#'+component)[0].disabled = false;
@@ -189,10 +190,10 @@ GoogleMapsLoader.load(google => {
       console.log(addressType);
       if (componentForm[addressType]) {
         var val = place.address_components[i][componentForm[addressType]];
-        $('#'+addressType)[0].value = val;
-
+        $('#'+addressType)[0].value = val
       }
     }
+    $('#add')[0].value = _.head(address);
   }
   // [END region_fillform]
 
@@ -200,7 +201,6 @@ GoogleMapsLoader.load(google => {
   // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
   function geolocate() {
-    console.log('geolocate');
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         var geolocation = {

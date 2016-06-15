@@ -167,10 +167,10 @@ module.exports = (data) => {
   .fillOpacity(80)
   .fontSize(12)
   .text('Trajet',75,350)
-  .text('Lieu de départ : ', 75, 365)
-  .text('77, bd Saint-Jacques 75014 PARIS', 80, 375)
-  .text('Lieu de dépot : ', 75, 385)
-  .text('Aéroport Orly', 80, 395)
+  .text('Lieu de départ : ', 75, 370)
+  .text('77, bd Saint-Jacques 75014 PARIS', 80, 385)
+  .text('Lieu de dépot : ', 75, 405)
+  .text('Aéroport Orly', 80, 420)
 
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
@@ -295,6 +295,7 @@ module.exports = (data) => {
 
 
   myDoc.end();
+
   writeStream.on('finish', function () {
     sendEmail.sendMail(data, nomfacture)
   });

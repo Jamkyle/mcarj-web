@@ -27,7 +27,8 @@ $('#simulate').submit(
           sits  = $('#sits').val()
           packs  = $('#packs').val()
           // show le formulaire
-          $('.formulaire').modal('toggle')
+
+          $('.formulaire').modal('show')
           $('#date_depart').text(datetime+' à '+clock)
           $('#price').text(sits*12.5+' €')
           $('#nbsits').text(sits)
@@ -37,7 +38,7 @@ $('#simulate').submit(
       else
         {
           $('.alert-danger').show()
-          
+
           e.preventDefault()
 
         }
@@ -75,6 +76,7 @@ $('#formReservation').submit(
 
   socket.on('send_success', (message) => {
     $('.alert').removeClass('hidden')
+    setTimeout(()=>{ $('.formulaire').modal('hide'); $('.alert').addClass('hidden') }, 1000)
   } )
 
   e.preventDefault()
