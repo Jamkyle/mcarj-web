@@ -30,7 +30,6 @@ module.exports = (data) => {
   var writeStream = fs.createWriteStream(`./pdf/${nomfacture}`);
   ( data.company ) ? dest = data.company : dest = _.capitalize(data.fname)+' '+name;
 
-
   myDoc.pipe(writeStream);
 
   myDoc.font('Times-Roman')
@@ -53,45 +52,42 @@ module.exports = (data) => {
   .text(data.CP.num+" "+data.CP.ville, 150,150);
 
   myDoc.font('Times-Roman')
-
   .fontSize(16)
   .text('MERCI DE VOTRE CONFIANCE !', 175,600);
 
   myDoc.font('Times-Roman')
-
   .fontSize(45)
-  .fillOpacity(0.4)
+  .fillOpacity(0.5)
   .text('Facture', 400,10);
 
-  myDoc.font('Times-Roman')
-
-  .fontSize(45)
-  .fillOpacity(0.4)
+  myDoc.font('Helvetica-Bold')
+  .fontSize(27)
+  .fillOpacity(0.5)
   .text('VROOMCAB', 50,10);
 
   myDoc.rect(50,200, 500,25)
-  .lineWidth(3)
-  .fillOpacity(5)
-  .fillAndStroke("#AAFEF3", "black");
+  .lineWidth(1)
+  .fillOpacity(0.5)
+  .fillAndStroke("#A9F5F2", "black");
 
   myDoc.rect(50,225, 500,25)
-  .lineWidth(3)
-  .fillOpacity(8)
+  .lineWidth(1)
+  .fillOpacity(1)
   .fillAndStroke("white", "black");
 
   myDoc.rect(50,300, 500,25)
-  .lineWidth(3)
-  .fillOpacity(5)
-  .fillAndStroke("#AAFEF3", "black");
+  .lineWidth(1)
+  .fillOpacity(0.5)
+  .fillAndStroke("#A9F5F2", "black");
 
   myDoc.rect(50,325, 500,125)
-  .lineWidth(3)
-  .fillOpacity(8)
+  .lineWidth(1)
+  .fillOpacity(1)
   .fillAndStroke("white", "black");
 
   myDoc.rect(450,450, 100,100)
-  .lineWidth(3)
-  .fillOpacity(8)
+  .lineWidth(1)
+  .fillOpacity(1)
   .fillAndStroke("white", "black");
 
 
@@ -99,7 +95,7 @@ module.exports = (data) => {
   //le numeros de facture utiliser fonction generate
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
-  .fillOpacity(80)
+  .fillOpacity(1)
   .fontSize(12)
   .text('N° FACTURE',75,210);
 
@@ -112,7 +108,7 @@ module.exports = (data) => {
   //Recupenom du passager
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
-  .fillOpacity(80)
+  .fillOpacity(1)
   .fontSize(12)
   .text('Nom du passager',200,210);
 
@@ -128,7 +124,7 @@ module.exports = (data) => {
   //Recuperer la date de la course
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
-  .fillOpacity(80)
+  .fillOpacity(1)
   .fontSize(12)
   .text('Date de Course',325,210);
 

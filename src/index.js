@@ -33,6 +33,10 @@ var controller = new ScrollMagic.Controller({
   globalSceneOptions: { triggerHook: "onEnter", duration: "200%" }
 });
 
+var way = new ScrollMagic.Controller({
+  globalSceneOptions: { triggerHook: 0.33, duration: '25%' }
+});
+
 let head = new ScrollMagic.Scene({ triggerElement: "#header" })
 .setTween("#header > *", {y:"23%", ease: Linear.easeNone})
 .addTo(controller);
@@ -42,9 +46,15 @@ new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
 // .addIndicators()
 .addTo(controller);
 
+new ScrollMagic.Scene({ triggerElement : '#way' })
+.setPin("#way", { ease: Linear.easeInOut})
+.addTo(way)
+
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
-.on('enter', () => {TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut});}
+.on('enter', () => { TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut}); }
 ).addTo(controller)
+
+
 var date = moment(), minDate, disabledDates
 
 // dateTime Bootstrap

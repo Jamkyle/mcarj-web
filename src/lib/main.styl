@@ -1,6 +1,7 @@
 //img src
   $img1 = '../lib/assets/paris.jpg'
   $img2 = '../lib/assets/saint_augustin_paris.jpg'
+  $orly = '../lib/assets/orly.jpg'
 
 @import './mixins'
 
@@ -82,16 +83,21 @@ html, body
 .crossStripes
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjNDAzYzNmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTI5MmQiPjwvcGF0aD4KPC9zdmc+");
 .subtleDots
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+");
+  position absolute
+  height 100%
+  width 100%
+  background url($orly)
+  background-size cover
+
+  // .pattern
+  //   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+");
 
 //parallax
 .parallaxParent
   height 110vh
   overflow hidden
   text-align center
-  @media (max-device-width: 1024px)
-    height 100vh
-  & > div:nth-child(1)
+  & > div#slider
     position relative
     height 150%
     top -50%
@@ -124,7 +130,6 @@ html, body
       background-size cover
 
 #simulate
-  height auto
   padding-bottom 10%
   &:before
     z-index: 0;
@@ -135,8 +140,6 @@ html, body
     height 110vh
     content: "";
     box-shadow: 0 4px 10px #777;
-    @media (max-device-width: 1024px)
-      height 100vh
   &:after
     content: ''
     margin-bottom 10%
@@ -165,6 +168,7 @@ html, body
 
 .simulate
   top 0!important
+  height 100%
 @media only screen and (min-device-width : 320px) and (max-device-width:740px)
   .title
     margin-bottom -2.5em
