@@ -42,9 +42,6 @@ $('#simulate').submit(
           e.preventDefault()
 
         }
-
-
-
   }
 )
 
