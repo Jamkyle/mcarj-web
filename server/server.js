@@ -1,7 +1,7 @@
 var express = require('express')
 var http = require('http')
 var sendEmail = require('./Components/sendEmail.js')
-// var planning = require('./Components/planning.js')
+var planning = require('./Components/planning.js')
 var generatePdf = require('./Components/generatePdf.js')
 var url = require('url')
 
@@ -24,6 +24,8 @@ io.sockets.on('connection', function (socket) {
   socket.emit('connect', 'vous êtes bien connecté')
   socket.on('sendMail', function (data) {
     generatePdf(data)
+    planning(data)
+
   });
   exports.socket = socket;
 });

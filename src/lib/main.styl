@@ -251,16 +251,18 @@ html, body
     bottom 40vh!important
 
 //modal
-.modal.modal-wide .modal-dialog {
-  width: 90%;
-}
+.modal.modal-wide .modal-dialog
+  @media only screen and ( min-width : 940px )
+    width: 90%;
+    .results
+      padding 10px
+
 .modal-wide .modal-body {
   overflow-y: auto;
 }
 
 // results
-.results
-  margin 10px
+
 
 .price
   background-color #36F

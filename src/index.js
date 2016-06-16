@@ -34,7 +34,7 @@ var controller = new ScrollMagic.Controller({
 });
 
 var way = new ScrollMagic.Controller({
-  globalSceneOptions: { triggerHook: 0.33, duration: '25%' }
+  globalSceneOptions: { triggerHook: 'onEnter', duration: '100%' }
 });
 
 let head = new ScrollMagic.Scene({ triggerElement: "#header" })
@@ -47,7 +47,7 @@ new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
 .addTo(controller);
 
 new ScrollMagic.Scene({ triggerElement : '#way' })
-.setPin("#way", { ease: Linear.easeInOut})
+.setTween("#way", { y: '50%',  ease: Linear.easeInOut})
 .addTo(way)
 
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
@@ -197,7 +197,6 @@ GoogleMapsLoader.load(google => {
     // and fill the corresponding field on the form.
     for (var i = 0; i < place.address_components.length; i++) {
       var addressType = place.address_components[i].types[0];
-      console.log(addressType);
       if (componentForm[addressType]) {
         var val = place.address_components[i][componentForm[addressType]];
         $('#'+addressType)[0].value = val
