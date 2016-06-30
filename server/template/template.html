@@ -37,6 +37,9 @@
       .raleway{
         font-family: 'Raleway', sans-serif;
       }
+      .table{
+        margin-bottom : 10px 
+      }
     </style>
   </head>
   <body>
@@ -49,7 +52,23 @@
           <tbody>
             <tr>
               <td>
-                Départ :
+                Votre identifiant
+              </td>
+              <td>
+                <span >{{ id }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Places
+              </td>
+              <td>
+                <span >{{ sits }}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Départ
               </td>
               <td>
                 <span class='blue' ><b>Denfert Rochereau - (77, bd Saint-Jacques 75014, PARIS)</b></span>
@@ -57,7 +76,7 @@
             </tr>
             <tr>
               <td>
-                Destination :
+                Destination
               </td>
               <td>
                 <span class='blue' ><b>Aéroport Orly SUD/OUEST</b></span>
@@ -65,7 +84,7 @@
             </tr>
             <tr>
               <td>
-                Jour du départ :
+                Jour du départ
               </td>
               <td>
                 <span class='red' ><b>{{datetime}}</b></span>
@@ -73,7 +92,7 @@
             </tr>
             <tr>
               <td>
-                Heure du départ :
+                Heure du départ
               </td>
               <td>
                 <span style='color:#E34'><b>{{hours}}</b></span>
@@ -81,7 +100,7 @@
             </tr>
             <tr>
               <td>
-                Voiture  :
+                Voiture
               </td>
               <td>
                   <span class='green' ><b>Peugeot 508</b></span><br>
@@ -89,7 +108,7 @@
             </tr>
             <tr>
               <td>
-                  Matricule :
+                  Matricule
               </td>
               <td>
                 <span class='green'><b>DY-971-KY</b></span>
@@ -99,7 +118,7 @@
         </table>
         <p>
           Ci-joint votre facture, <br>
-          <a href="http://localhost:4200/cancel/?name=john" >Annuler la commande</a>
+          pour Annuler votre commande cliquez sur ce lien <a href={{ "http://localhost:4200/cancel/?course="+eid+"&date="+creneau }} >{{ "http://vroomcab.fr/cancel/?course="+eid+"&date="+creneau }}</a>
         </p>
         <p class='green'>
           Merci de votre confiance.<br>
@@ -109,7 +128,7 @@
         <span class='greatvibes logo'>Vroomcab</span>
         <div class="sign">
           <span style='font-size : 16px' >&#9990;</span> <span class='grey'> : +33 6 29 20 22 51</span><br>
-          <span style='font-size : 18px' >&#9993;</span> <span class='grey' > : M'CAR'J - 69, rue de la glacière 75013 PARIS</span>
+          <span style='font-size : 18px' >&#9993;</span> <span class='grey'> : M'CAR'J - 69, rue de la glacière 75013 PARIS</span>
         </div>
 
       </div>

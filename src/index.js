@@ -3,7 +3,7 @@ import ScrollMagic from 'scrollmagic'
 import 'imports?define=>false!ScrollMagicGSAP'
 import 'jquery'
 import { googlefonts } from 'googlefonts'
-import './lib/main.styl'
+
 import _ from 'lodash'
 
 import 'font-awesome/css/font-awesome.min.css'
@@ -14,7 +14,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 import 'eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
 
-import './lib/js/connect'
+import './lib/main.styl'
+
+Stripe.setPublishableKey('pk_test_DD5S71d8Y0UIIsExbpR0Kfvf');
+
+import { socket } from './lib/js/connect'
+
 import './lib/js/form'
 import './lib/js/slider'
 
@@ -25,7 +30,6 @@ GoogleMapsLoader.LIBRARIES = ['geometry', 'places']
 GoogleMapsLoader.LANGUAGE = 'fr'
 GoogleMapsLoader.REGION = 'FR'
 
-
 let app = $('#app')
 let script = document.querySelector('#script')
 
@@ -33,9 +37,9 @@ var controller = new ScrollMagic.Controller({
   globalSceneOptions: { triggerHook: "onEnter", duration: "200%" }
 });
 
-var way = new ScrollMagic.Controller({
-  globalSceneOptions: { triggerHook: 'onEnter', duration: '100%' }
-});
+// var way = new ScrollMagic.Controller({
+//   globalSceneOptions: { triggerHook: 'onEnter', duration: '100%' }
+// });
 
 let head = new ScrollMagic.Scene({ triggerElement: "#header" })
 .setTween("#header > *", {y:"23%", ease: Linear.easeNone})
@@ -46,9 +50,9 @@ new ScrollMagic.Scene({ offset: head.scrollOffset()+600 })
 // .addIndicators()
 .addTo(controller);
 
-new ScrollMagic.Scene({ triggerElement : '#way' })
-.setTween("#way", { y: '50%',  ease: Linear.easeInOut})
-.addTo(way)
+// new ScrollMagic.Scene({ triggerElement : '#way' })
+// .setTween("#way", { y: '50%',  ease: Linear.easeInOut})
+// .addTo(way)
 
 let panel = new ScrollMagic.Scene({triggerElement: ".panel", reverse:false})
 .on('enter', () => { TweenMax.from(".panel", 1, {left: 500, ease: Back.easeOut}); }
@@ -61,26 +65,45 @@ var date = moment(), minDate, disabledDates
 let datetime = $('#datetime')
 let clock  = $('#clock')
 
+
+
 if(moment().hours() < 6 )
 {
-  (moment().day() !== 6)?
-    date = moment().hours(6)
-  : date = moment().add(1, 'days').hours(6)
-  disabledDates = [ moment().subtract(1, 'days') ]
+  ( moment().day() === 6 || moment().date() === 13 && moment().month() === 6 )?
+    date = moment().add(1, 'days').hours(6)
+  : date = moment().hours(6)
+  disabledDates = [ moment().subtract(1, 'days'), '07-14-2016' ]
 }
 else if(moment().hours() >= 20)
 {
-  (moment().day() !== 6)?
-  date = moment().add(1, 'days').hours(6)
-  : date = moment().add(2, 'days').hours(6)
-  disabledDates = [ moment().subtract(1, 'days'), moment() ]
+  ( moment().day() === 6 || moment().date() === 13 && moment().month() === 6 )?
+  date = moment().add(2, 'days').hours(6)
+  : date = moment().add(1, 'days').hours(6)
+  disabledDates = [ moment().subtract(1, 'days'), moment(), '07-14-2016' ]
 }
 else
 {
-  date = moment().add(30, 'minutes')
-  minDate = moment().subtract(1, 'seconds')
-  disabledDates = [ moment().subtract(1, 'days') ]
+  (moment().minutes() < 30)?
+  date = moment().add(1, 'hours') : date = moment().add(2, 'hours')
+  minDate = moment().add(30, 'minutes')
+  disabledDates = [ moment().subtract(1, 'days'), '07-14-2016' ]
 }
+var nbPlaces = 4
+
+
+socket.on('sits', function(a){
+  var sits = $('#sits')
+  nbPlaces = 4 - a
+  sits.empty()
+  if(nbPlaces > 0){
+    for(let i=1; i<=nbPlaces; i++)
+    {
+      let options = $('<option value="'+i+'">'+i+'</option>');
+      sits.append(options)
+    }
+  }
+  else sits.append($('<option value="0"> aucune place disponible </option>'))
+})
 
 datetime.datetimepicker({
   date : date,
@@ -95,37 +118,40 @@ clock.datetimepicker({
   date : date,
   minDate : minDate,
   maxDate : moment().hours(20).minutes(0),
-  disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23],
-  stepping : 30,
+  disabledHours : [ 0 ,1 ,2 ,3 ,4, 5, 21, 22, 23 ],
+  stepping : 60,
   format : 'HH:mm'
 });
+var hours = clock.data('DateTimePicker').date().hours()
 
-if(moment().day() === 0){
-  console.log('true');
+if(moment().day() === 0 || (moment().date() === 14 && moment().month() === 6)){
   let demain = moment().add(1, 'days')
   datetime.data('DateTimePicker').date(demain)
   clock.data('DateTimePicker').minDate(false)
   clock.data('DateTimePicker').date(moment().hours(6))
   }
-
+socket.emit('date_selected', datetime.data('DateTimePicker').date().hours(hours).format('YYYY/MM/DD/H') )
 
 datetime.on('dp.change', (e)=>{
+  let hours = clock.data('DateTimePicker').date().hours()
+  console.log(e.date.hours(hours).format('YYYY/MM/DD/H'));
+  socket.emit('date_selected', e.date.hours(hours).format('YYYY/MM/DD/H') )
+
   if(e.date > moment())
-  clock.data('DateTimePicker').minDate(false)
+    clock.data('DateTimePicker').minDate(false)
   else {
     clock.data('DateTimePicker').minDate(minDate)
-    clock.data('DateTimePicker').date(moment().add(30, "minutes"))
+    clock.data('DateTimePicker').date(moment().add(1, "hours"))
   }
 })
 
-//nb places
-let nbPlaces = 4
+clock.on('dp.change', (e)=>{
+  let aDate = datetime.data('DateTimePicker').date()
+  socket.emit('date_selected', aDate.hours(e.date.hours()).format('YYYY/MM/DD/H') )
+})
 
-for(let i=1; i<=nbPlaces; i++)
-{
-  let option = $('<option value="'+i+'">'+i+'</option>');
-  $('#sits').append(option)
-}
+//nb places
+
 
 //bagages
 let currentBagage = 1
@@ -143,6 +169,7 @@ for(let i=0; i<=renderBagage; i++)
 
   $('#packs').append(option)
 }
+
 $('.dismiss-alert-danger').click((e)=>{
   $('.alert-danger').hide()
   e.preventDefault()
@@ -152,7 +179,7 @@ $('.dismiss-alert-danger').click((e)=>{
 
 $('#openGeneralCondition').click((event)=>{
   event.preventDefault()
-  window.open('conditiongeneral.html', 'conditions', 'fullscreen=yes')
+  window.open('cgu.html', 'conditions', 'fullscreen=yes')
 })
 
 GoogleMapsLoader.load(google => {

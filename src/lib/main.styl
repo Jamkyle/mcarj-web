@@ -1,12 +1,17 @@
 //img src
-  $img1 = '../lib/assets/paris.jpg'
+  $img3 = '../lib/assets/paris.jpg'
+  $img1 = '../lib/assets/header.jpg'
   $img2 = '../lib/assets/saint_augustin_paris.jpg'
   $orly = '../lib/assets/orly.jpg'
+  $coins = '../lib/assets/coins.jpg'
+  $tower = '../lib/assets/tower.jpeg'
+  $night = '../lib/assets/night.jpg'
+  $map = '../lib/assets/map.png'
 
 @import './mixins'
 
 body
-  font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
+  // font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.9);
 
 html, body
@@ -14,6 +19,15 @@ html, body
   margin 0
 ._left
   position relative
+
+._inline
+  display inline-block
+
+._black
+  background-color rgba(#303030,0.9)
+
+._yellow
+  background-color #FBB941
 
 .drop-shadow
   position:relative;
@@ -29,7 +43,7 @@ html, body
 .drop-shadow:after {
     content:"";
     position:absolute;
-    z-index:-2;
+    z-index:1;
 }
 
 .curved:before {
@@ -83,28 +97,25 @@ html, body
 .crossStripes
   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjNDAzYzNmIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2U9IiMxZTI5MmQiPjwvcGF0aD4KPC9zdmc+");
 .subtleDots
-  position absolute
-  height 100%
-  width 100%
-  background url($orly)
+  background url($img3) no-repeat
   background-size cover
+  z-index 0
 
   // .pattern
   //   background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1IiBoZWlnaHQ9IjUiPgo8cmVjdCB3aWR0aD0iNSIgaGVpZ2h0PSI1IiBmaWxsPSIjZmZmIj48L3JlY3Q+CjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNjY2MiPjwvcmVjdD4KPC9zdmc+");
 
 //parallax
 .parallaxParent
-  height 110vh
   overflow hidden
   text-align center
   & > div#slider
+    z-index 0
     position relative
-    height 150%
-    top -50%
-.bg
-  &_head
-     width 100%
-     height 100%
+    height 100%
+    top -12%
+
+.slider
+  top 0
 
 .img
   z-index 1
@@ -115,7 +126,6 @@ html, body
 .bg
   opacity 0.7
   z-index 2
-  background 0px 0px no-repeat linear-gradient(45deg, hsla(208, 100%, 19%, 1) 0%, hsla(208, 100%, 19%, 0) 70%),linear-gradient(135deg, hsla(0, 0%, 0%, 1) 10%, hsla(0, 0%, 0%, 0) 80%),linear-gradient(225deg, hsla(201, 100%, 16%, 1) 10%, hsla(201, 100%, 16%, 0) 80%),linear-gradient(315deg, hsla(0, 0%, 29%, 1) 100%, hsla(0, 0%, 29%, 0) 70%);
 
 .slider
   width 100%
@@ -124,22 +134,25 @@ html, body
     .img
       background url($img1) no-repeat 30% 20%
       background-size cover
+    .bg
+      background 0px 0px no-repeat linear-gradient(45deg, hsla(208, 100%, 19%, 1) 0%, hsla(208, 100%, 19%, 0) 70%),linear-gradient(135deg, hsla(0, 0%, 0%, 1) 10%, hsla(0, 0%, 0%, 0) 80%),linear-gradient(225deg, hsla(201, 100%, 16%, 1) 10%, hsla(201, 100%, 16%, 0) 80%),linear-gradient(315deg, hsla(0, 0%, 29%, 1) 100%, hsla(0, 0%, 29%, 0) 70%);
   &-2
     .img
-      background url($img2) no-repeat 20% 50%
+      background url($coins) no-repeat 50%
       background-size cover
-
+    .bg
+      background #303030
 #simulate
-  padding-bottom 10%
+  overflow visible
   &:before
-    z-index: 0;
+    z-index: 1;
     position: absolute;
     top 0
     left 0%
     width 100%
-    height 110vh
+    height 110%
     content: "";
-    box-shadow: 0 4px 10px #777;
+    box-shadow: 0 4px 10px #222;
   &:after
     content: ''
     margin-bottom 10%
@@ -155,7 +168,8 @@ html, body
     color #FEFEFE
     background-color rgba(020,20,20,0.8)
 
-
+#header
+  height 110vh
 
 .inner
   top 40%
@@ -218,14 +232,36 @@ html, body
     display: flex
 
 #way
- & h1
-  color #fafafa
+  & h1
+    color #fafafa
+  position relative
+
 #simulator
   display none
   padding 5px
 #map
   height 50vh
 
+#info
+  min-size 100% 400px
+.map
+  background url($map) 50% 0px no-repeat
+  background-size cover
+
+.logo
+  pos absolute -10% 0 0 0
+  z-index 10
+  color #FFF
+
+#footer
+  padding 10px
+  li
+    color : #999
+    font-weight 200
+    &:hover
+      color #fff
+  a
+    text-decoration none
 .d
   &:after
     content : 'de :'
@@ -243,6 +279,7 @@ html, body
 .pointer
   cursor pointer
 
+
 .carousel-indicators
   bottom 40vh!important
   @media only screen and (max-width : 420px)
@@ -251,9 +288,15 @@ html, body
     bottom 40vh!important
 
 //modal
+.modal{
+  z-index: 20;
+}
+.modal-backdrop{
+  z-index: 10;
+}
 .modal.modal-wide .modal-dialog
   @media only screen and ( min-width : 940px )
-    width: 90%;
+    width: 90%
     .results
       padding 10px
 
@@ -261,14 +304,57 @@ html, body
   overflow-y: auto;
 }
 
+.pac-container {
+  background-color: #FFF;
+  z-index: 1050;
+  position: fixed;
+  display: inline-block;
+  float: left;
+}
+.small-group
+  @media only screen and ( min-width : 420px )
+    width : 300px
 // results
-
-
 .price
   background-color #36F
   font-size : 1.3em
   font-weight : bold
   color #EEE
+
+.tower
+  background url($tower)
+  background-size cover
+li
+  list-style-type : none
+
+.copy
+  font-size 12px
+  margin 10px 0 0 0
+
+.stick-contact
+  padding 5px 0 0 0
+  position fixed
+  z-index 10
+  right 0
+  size 100px 32px
+  background-color rgba(#222, 0.8)
+  border-radius 2px
+  box-shadow 3px 2px 5px 0 #222
+  color #ccc
+
+.stick-contact > *:hover
+  color #fff
+  cursor pointer
+
+.stick-contact
+  i
+    float left
+  span
+    margin 0 0 0 4px
+
+.panel
+  background-color rgba(#444, 0.9)
+  color #FFF
 
 //fonts
 @import './fonts'

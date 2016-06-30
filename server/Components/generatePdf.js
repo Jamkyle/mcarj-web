@@ -193,7 +193,7 @@ module.exports = (data) => {
   .fillAndStroke("black", "black")
   .fillOpacity(80)
   .fontSize(12)
-  .text(data.nombre,305,365);
+  .text(data.sits,305,365);
 
   myDoc.font('Times-Roman')
   .fillAndStroke("black", "black")
@@ -201,7 +201,7 @@ module.exports = (data) => {
   .fontSize(12)
   .text('MONTANT',455,310);
 
-  var montant=data.nombre*12.5;
+  var montant=data.sits*12.5;
   var soustotal= montant * 0.9;
 
   myDoc.font('Times-Roman')
@@ -293,6 +293,6 @@ module.exports = (data) => {
   myDoc.end();
 
   writeStream.on('finish', function () {
-    sendEmail.sendMail(data, nomfacture)
+    // sendEmail.sendMail(data, nomfacture)
   });
 }

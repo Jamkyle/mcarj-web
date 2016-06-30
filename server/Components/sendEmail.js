@@ -7,7 +7,7 @@ var path = require('path');
 var swig = require('swig-email-templates');
 var htmlToPdf = require('html-to-pdf');
 var server = require('../server.js');
-var Config =  require('../config.js');
+var Config = require('../config.js');
 
 // var templatePdf = swig.compileFile('../server/template/htmltopdf.html');
 // exports.generatePdf = function(data){
@@ -25,7 +25,7 @@ var Config =  require('../config.js');
 // )
 // }
 
-exports.sendMail = function(data, attach){
+exports.sendMail = function(data, attach, id){
   var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -51,11 +51,12 @@ exports.sendMail = function(data, attach){
      generateTextFromHTML: true,
      html: html,
      text: text,
-     attachments: [{
-       filename: 'facturation-'+attach,
-       path: '../server/pdf/'+attach,
-       contentType: 'application/pdf'
-     }], function (err, info) {
+    //  attachments: [{
+    //    filename: 'facturation-'+attach,
+    //    path: '../server/pdf/'+attach,
+    //    contentType: 'application/pdf'
+    //  }],
+     function (err, info) {
        if(err){
          console.error(err);
          res.send(err);
@@ -72,7 +73,7 @@ exports.sendMail = function(data, attach){
       console.log(err);
       else {
           console.log(res);
-          server.socket.emit('send_success', 'Votre email a bien été envoyé')
+          server.socket.emit('send_success')
       }
       smtpTransport.close()
    });

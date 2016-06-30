@@ -4,3 +4,4 @@
 /server/node_modules
 /server/pdf/*
 npm-debug.log
+client_secret.json

@@ -8,8 +8,9 @@ var pdf =require('pdfkit');
 var _ = require('lodash');
 var sendEmail = require('./sendEmail.js');
 var config = require('../config.js');
-var planning=require('./planning.js');
+var planning = require('./planning.js');
 
+var db = require('./firebase.js').ref('/')
 
 module.exports = function(data) {
 
@@ -105,19 +106,30 @@ module.exports = function(data) {
         console.log('Token stored to ' + TOKEN_PATH);
     }
 
-
     /**
      * add events on the user's primary calendar.
      *
      * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
      */
     function addEvent(auth) {
+
+        var ref = db.child(data.creneau+'/users')
+        var newPost = ref.push()
+        var idKey = newPost.key;
+        var pre = _.toLower(idKey)
+        var id = pre.replace(/-|_| /g, 'p')
+        newPost.set({
+            id : id,
+            email : data.destination,
+            name: { last : data.name, first : data.fname }
+        })
+
         var calendar = google.calendar('v3');
-        console.log(data.dateApi);
+
         var event = {
-            'summary': 'VroomCab 2016',
-            'location': 'Denfert',
-            'description': 'Rendez-vous',
+            'summary': 'Passager: '+data.name+' - '+id+' Places: '+data.sits,
+            'location': '77, bd Saint-Jacques 75014 PARIS',
+            'description': 'Nom passager : '+data.name+' '+data.fname+' \n a reservé pour : '+data.sits+" \n nombre de bagages : "+data.packs*data.sits,
             'start': {
                 'dateTime': data.dateApi,
                 'timeZone': 'Europe/Paris',
@@ -126,16 +138,13 @@ module.exports = function(data) {
                 'dateTime': data.dateApi,
                 'timeZone': 'Europe/Paris',
             },
-
-            'attendees': [
-                {'email': 'vroomcab@gmail.com'}
-            ],
+            'visibility' : 'private'
 
         };
-
+        var eid;
         calendar.events.insert({
             auth: auth,
-            calendarId: 'vroomcab@gmail.com',
+            calendarId: 'primary',
             sendNotifications: true,
             resource: event,
         }, function (err, event) {
@@ -146,9 +155,20 @@ module.exports = function(data) {
                 return;
             }
             console.log('Event created: %s', event.htmlLink);
+            eid = event.id
+            newPost.update({
+                id : id,
+                sits : data.sits,
+                course : eid,
+                email : data.destination,
+                name: { last : data.name, first : data.fname }
+            });
+
+            sendEmail.sendMail(Object.assign(data, {id : id, eid : eid}))
         });
 
         listEvents(auth)
+
 
     }
 
@@ -162,7 +182,7 @@ module.exports = function(data) {
         var calendar = google.calendar('v3');
         calendar.events.list({
             auth: auth,
-            calendarId: 'primary',
+            calendarId: 'vroomcab@gmail.com',
             timeMin: (new Date()).toISOString(),
             maxResults: 10,
             singleEvents: true,
@@ -178,7 +198,7 @@ module.exports = function(data) {
             if (events.length == 0) {
                 console.log('No upcoming events found.');
             } else {
-                console.log('Upcoming 10 events:');
+                console.log('Upcoming events:');
                 for (var i = 0; i < events.length; i++) {
                     var event = events[i];
                     var start = event.start.dateTime || event.start.date;

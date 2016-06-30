@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
+    "firebase": "^3.0.5",
     "font-awesome": "^4.6.1",
     "google-auth-library": "^0.9.8",
     "google-maps": "^3.2.1",
