@@ -1,7 +1,7 @@
 var firebase = require('firebase')
 
 firebase.initializeApp({
-  serviceAccount: "./planning-b1a844082b66.json",
+  serviceAccount: "./planning-39905f3f5dea.json",
   databaseURL: "https://planning-f45d1.firebaseio.com"
 });
 

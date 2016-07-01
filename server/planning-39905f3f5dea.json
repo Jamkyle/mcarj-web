@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "planning-f45d1",
+  "private_key_id": "39905f3f5dea4daa4a1ae9d8be1ac882f3d0f04b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCFTe+U8ivBNoXk\nqWLlCFu0FU9adEu7v+odRLKUPFIVhBJQ4OR4z/qo4tvylYq0fAdfFds3f9HxxQyt\niR5929rJaL+N7a2WCJz2jBAArDThxVH7N5BMCwtRUK7r+fP8oX99MlZHcD0h3raj\nU5R0qLB4gLfGVqITL+RxtBvUg6r+W6XB8la7fO38jIXUgioVeQrkQClTGsJIQyqT\nssmCe3M+cHGiqfj6KlztIQW4qatABXTw97rvvujx1O7LtZTuaTPpuT16NXN3hNLx\nXaWMTBSqnJAi5QQJcG1S0q5OtoV+ZBouHL4/gSVj7cibsRawaVU8sGQH2x2AeGgG\nFlGiGcSpAgMBAAECggEAKqVCLh5DTS6KKxrdXnQMElJ27nMh/1BoLzDZCH87q1Jz\nIZiwvs2aXQkmYDbjBtZe7VZqqRilK3lkkue47360QZbXISqWS9c5j85DGFP/HvMn\nRP0DlrA50KvFKgzutzVbOcwuue/4PqunNhz481E8E3DqWfNBKm454P5DoPr2aySj\nr7vyz8gDcRBLIkBFwPOMscC16nhlgL2oF0qxYOkLkZTf62D/6Y2viUukMKMjFLDH\njmjqTvUVCFveQFHqE1P1z3e2jUi6lSzfsPJrCfz9WIFvwai9DQtQMqrId1hUtRmA\n5juqqJCnReO9B34S4ecO9py3TjCp66kJoV0UWEzbmQKBgQDO5Dx0HVmDWoKkfw05\n/PJ96bB4kW2JMCVtMcITcEJIaW5zw4qt3tLFMK7wXfdt037+I+NQclO6NTvY8Pg6\nBcijOcxsXEj1p/y7rYyBnMRRWXhI0k9RnHuRK28Gjm2YrUXQR+tOx9M5eWfED/i8\nrV2dRzUkXu2Cdqcdq31Xy+s82wKBgQCk8i3nv9Qbt5rpPUmqKj0r5DMLDJILGLZo\nEfpfoKNwfv5PbtNatGop1PlOUuoRkRvdmMorPg4RPluDjIsRiMz/H6eVpAzG5wGe\n/wXpyReVVt74U1aV9DeWBLmA/oXgwpXmdlDgzNePelkMZOcJ/Ho18sARDfTCbLV1\nsgOl73d5ywKBgGbvmcBv5dx7yOpNKGiEmKXbAmlKegQ6xzRIAHapcOEUS9cfID2X\n0qg3q6J+LiAfjVymwG+DInNQDyHF6sr7m7LSjAoR9F79ILrEA1dthyOubzFUKhDB\n2Z0Fziyl6pN/CnAxiDrfIxHCfMVI6Qn++8fH6QHalTNHE6iobSmklLrnAoGBAJoJ\nvMsHfzsfPSECZk/uwE/D/dMcuyp3uqj32R0C9H8zaaWetuynPdmxFd2KWyNqo15P\nuMWnXxXFaUsxrhIC8oZy9lst5+y8gOwN92S7sjV5+iJoGZ1Sg7Kq2N5ZU4dx0PF3\nntJBGjHYrV6AwK63xR2qhKmooeIMCW5Pf06wkp//AoGADqDWTr4LehV1/Qo6bZ7l\n0gQ5vU9+J0GQB2QwVQMizmE2sTJHAqW3W+lN5raP2+5cbaIzemi6WcwXoXoJJabs\noOP7VfuuTwlUe7x7/ex6cHzFn7eL3+fqiqJBPY1+R2+c61eV87QdPVFkHozf7r7W\nD1QhDNtPuwFPzP5TnY7pFLA=\n-----END PRIVATE KEY-----\n",
+  "client_email": "vroomplan@planning-f45d1.iam.gserviceaccount.com",
+  "client_id": "101462728946371527821",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/vroomplan%40planning-f45d1.iam.gserviceaccount.com"
+}

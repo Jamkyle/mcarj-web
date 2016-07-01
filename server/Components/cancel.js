@@ -132,7 +132,7 @@ module.exports = function(creneau, course, res) {
       console.log('Event remove');
       res.setHeader('Content-Type', 'text/plain');
       res.end('votre demande d\'annulation a été prise en compte. \n \n Merci de votre visite');
-      res.writeHead(302, {'Location': 'https://localhost:3000' + req.url});
+      res.writeHead(302, {'Location': 'https://localhost:3000'});
       var date = new Date()
       console.log(date.toString());
       ref.orderByChild('course').equalTo(course).once("child_added", function(snap){
