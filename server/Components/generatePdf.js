@@ -293,6 +293,6 @@ module.exports = (data) => {
   myDoc.end();
 
   writeStream.on('finish', function () {
-    // sendEmail.sendMail(data, nomfacture)
+    sendEmail.sendMail(Object.assign(data, {attach : nomfacture}))
   });
 }

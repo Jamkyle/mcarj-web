@@ -7,6 +7,7 @@ var fs = require('fs');
 var pdf =require('pdfkit');
 var _ = require('lodash');
 var sendEmail = require('./sendEmail.js');
+var generatePdf = require('./generatePdf.js');
 var config = require('../config.js');
 var planning = require('./planning.js');
 
@@ -164,12 +165,10 @@ module.exports = function(data) {
                 name: { last : data.name, first : data.fname }
             });
 
-            sendEmail.sendMail(Object.assign(data, {id : id, eid : eid}))
+            generatePdf(Object.assign(data, {id : id, eid : eid}))
         });
 
         listEvents(auth)
-
-
     }
 
 

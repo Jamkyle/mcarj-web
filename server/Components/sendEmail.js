@@ -25,7 +25,7 @@ var Config = require('../config.js');
 // )
 // }
 
-exports.sendMail = function(data, attach, id){
+exports.sendMail = function(data){
   var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -51,11 +51,11 @@ exports.sendMail = function(data, attach, id){
      generateTextFromHTML: true,
      html: html,
      text: text,
-    //  attachments: [{
-    //    filename: 'facturation-'+attach,
-    //    path: '../server/pdf/'+attach,
-    //    contentType: 'application/pdf'
-    //  }],
+     attachments: [{
+       filename: 'facturation-'+data.attach,
+       path: '../server/pdf/'+data.attach,
+       contentType: 'application/pdf'
+     }],
      function (err, info) {
        if(err){
          console.error(err);

@@ -22,7 +22,7 @@ $('#simulate').submit(
     clock  = $('#clock').data('date')
     var datetimepicker = $('#datetime').data('DateTimePicker')
     var clockpicker;
-    (moment().minutes() < 30 || moment().hours() < 5)?
+    ((moment().minutes() < 30 && moment().hours() < 20) || moment().hours() < 5)?
       clockpicker = $('#clock').data('DateTimePicker').date()
     : clockpicker = $('#clock').data('DateTimePicker').date().subtract(30, 'minutes')
     // let day = datetimepicker.date().date()
@@ -32,12 +32,11 @@ $('#simulate').submit(
     let minutes = clockpicker.minutes()
     // if(moment() < moment(datetime).hours(clock))
     // moment().date(day).month(month).year(year).hours(hours).minutes(minutes)
-
     if( moment() < datetimepicker.getMoment(datetime).hours(hours).minutes(minutes)
     && datetimepicker.getMoment(datetime).isValid()
     && hours >= 6
     && hours < 20 // condition si la date est dans le cadre horraire
-    && (sits > 0)
+    && sits > 0
    )
   {
     packs  = $('#packs').val()
@@ -52,7 +51,7 @@ $('#simulate').submit(
   }
   else
   {
-    console.log(moment());
+    console.log(datetimepicker.getMoment(datetime).hours(hours).minutes(minutes));
     $('#simulate').find('[data-name=datetime]').show()
     e.preventDefault()
 
@@ -149,6 +148,7 @@ form.submit(
     socket.on('send_success', (message) => {
       let mess_success = $('#simulate').find('[data-name=send_success]')
       mess_success.show()
+      mess_success.text('Un mail vous a été envoyé!')
 
       setTimeout(()=>{ $('.formulaire').modal('hide');
        mess_success.hide();
@@ -156,5 +156,4 @@ form.submit(
        window.location.href = '/';
        form[0].reset()
      }, 1000)
-
     } )

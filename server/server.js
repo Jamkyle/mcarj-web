@@ -16,10 +16,6 @@ var io = require('socket.io')(server)
 
 var port = require('./config.js').port
 
-
-
-
-
 app.use('/cancel', function(req, res){
   var query = url.parse(req.url).query.split('&');
   var course = query[0].split('=')[1];
