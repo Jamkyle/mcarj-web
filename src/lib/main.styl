@@ -10,6 +10,7 @@
 
 @import './mixins'
 
+
 body
   // font: 16px/1.5 'Open Sans', Helvetica, Helvetica Neue, Arial, sans-serif;
   color: rgba(0, 0, 0, 0.9);
@@ -17,6 +18,10 @@ body
 html, body
   height 100%
   margin 0
+
+a
+  color #aaa
+
 ._left
   position relative
 
@@ -24,7 +29,7 @@ html, body
   display inline-block
 
 ._black
-  background-color rgba(#303030,0.9)
+  background-color rgba(#222,0.9)
 
 ._yellow
   background-color #FBB941
@@ -199,6 +204,7 @@ html, body
 .desc
   font-size 1em
   text-align left
+  margin 0
 
 .blur
   filter: blur(2px);
@@ -252,6 +258,31 @@ html, body
   pos absolute -10% 0 0 0
   z-index 10
   color #FFF
+
+.panel-body
+  padding 0 15px 15px 15px
+  h4
+    color #FFCC50
+    i
+      margin 5px
+      &::after
+        margin 5px
+        content ':'
+  p
+    display inline
+
+.panel-title
+  color #5BC0DE
+  i
+    margin 4px
+.contact
+  display flex
+  margin 0 0 7px 0
+  h4
+    display inline
+    margin 0
+
+
 
 #footer
   padding 10px
@@ -353,7 +384,7 @@ li
     margin 0 0 0 4px
 
 .panel
-  background-color rgba(#444, 0.9)
+  background-color rgba(#222, 0.9)
   color #FFF
 
 //fonts

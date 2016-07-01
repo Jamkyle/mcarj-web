@@ -125,14 +125,15 @@ module.exports = function(creneau, course, res) {
       if (err) {
 
         console.log('There was an error contacting the Calendar service: ' + err);
-        setTimeout(res.writeHeader(302, { 'Location' : 'http://localhost:3000/cancel'}), 1000)
-        res.end('votre demande d\'annulation a déjà été prise en compte ou n\'existe plus');
+        // res.write('votre demande d\'annulation a déjà été prise en compte ou n\'existe plus');
+        res.writeHead(302, {'Location': 'http://localhost:3000'})
+        res.end()
+
         return;
       }
       console.log('Event remove');
-      res.setHeader('Content-Type', 'text/plain');
-      res.end('votre demande d\'annulation a été prise en compte. \n \n Merci de votre visite');
-      res.writeHead(302, {'Location': 'https://localhost:3000'});
+      res.writeHead(302, {'Location': 'http://localhost:3000'})
+
       var date = new Date()
       console.log(date.toString());
       ref.orderByChild('course').equalTo(course).once("child_added", function(snap){

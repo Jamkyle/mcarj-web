@@ -22,7 +22,7 @@ $('#simulate').submit(
     clock  = $('#clock').data('date')
     var datetimepicker = $('#datetime').data('DateTimePicker')
     var clockpicker;
-    (moment().minutes() < 30)?
+    (moment().minutes() < 30 || moment().hours() < 5)?
       clockpicker = $('#clock').data('DateTimePicker').date()
     : clockpicker = $('#clock').data('DateTimePicker').date().subtract(30, 'minutes')
     // let day = datetimepicker.date().date()
@@ -30,7 +30,6 @@ $('#simulate').submit(
     // let year = $('#datetime').data('DateTimePicker').date().year()
     let hours = clockpicker.hours()
     let minutes = clockpicker.minutes()
-    console.log(hours);
     // if(moment() < moment(datetime).hours(clock))
     // moment().date(day).month(month).year(year).hours(hours).minutes(minutes)
 
@@ -53,6 +52,7 @@ $('#simulate').submit(
   }
   else
   {
+    console.log(moment());
     $('#simulate').find('[data-name=datetime]').show()
     e.preventDefault()
 
@@ -81,10 +81,10 @@ var form = $('#formReservation');
 form.submit(
   (e) => {
     var clockpicker;
-    (moment().minutes() < 30)?
+    (moment().minutes() < 30 || moment().hours() < 5)?
       clockpicker = $('#clock').data('DateTimePicker').date()
     : clockpicker = $('#clock').data('DateTimePicker').date().subtract(30, 'minutes')
-    
+
     let name = $('#nom').val()
     let prenom = $('#prenom').val()
     let email = $('#mail').val()
@@ -93,12 +93,12 @@ form.submit(
     let cp = $('#postal_code').val()
     let ville = $('#locality').val()
     let company = $('#nomS').val()
-    let hours = clockpicker.hours()
+    let hours = $('#clock').data('DateTimePicker').date().hours()
     let minutes = clockpicker.minutes()
     let datetimepicker = $('#datetime').data('DateTimePicker')
 
     //teste si la date est valide
-    if( moment() < datetimepicker.getMoment(datetime).hours(hours).minutes(minutes)
+    if( moment() < datetimepicker.getMoment(datetime).hours(clockpicker.hours()).minutes(minutes)
     && datetimepicker.getMoment(datetime).isValid()
     && hours >= 6 && hours <20 && sits != 0){
       form.find('.submit').prop('disabled', true);
