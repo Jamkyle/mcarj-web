@@ -1,5 +1,5 @@
 module.exports = {
-  host : 'http://localhost',
+  host : 'http://127.0.0.1',
   port : 4200,
   client : {
     mail :'vroomcab@gmail.com',
