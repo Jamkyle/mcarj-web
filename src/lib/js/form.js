@@ -5,6 +5,7 @@ var clock
 var sits
 var packs
 var success = false
+var hourMin
 
 // consultation
 $('a.close').click(e =>{

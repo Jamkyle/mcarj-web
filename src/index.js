@@ -21,6 +21,7 @@ Stripe.setPublishableKey('pk_test_DD5S71d8Y0UIIsExbpR0Kfvf');
 import { socket } from './lib/js/connect'
 
 import './lib/js/form'
+import './lib/js/contact'
 import './lib/js/slider'
 
 import GoogleMapsLoader from 'google-maps'

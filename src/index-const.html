@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Content-Language" content="fr" />
+  <title>Vroomcab-web</title>
+  <meta name="robots" content="index, follow" />
+  <meta name="googlebot" content="index, nosnippet, noarchive" />
+  <meta name="description" content="Aller de Denfert jusqu'à Orly pour 12€50 dans une voiture vtc en toute convivialité">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noimageindex" />
+  <meta name="googlebot" content="noimageindex" />
+  <meta name="geo.region" content="FR" />
+  <meta name="Author" content="M'Car'J, Vroomcab" />
+  <meta name="copyright" content="All Rights Reserved - Vroomcab by M'Car'J " />
+  <meta name="google-site-verification" content="vroomcab.com" />
+  <meta name="google-site-verification" content="vroomcab.fr" />
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+</head>
+<body>
+  <!-- <div class="stick-contact">
+  <div class="col-xs-3">
+  <i class='fa fa-paper-plane-o'></i> <span>Contact</span>
+</div>
+</div> -->
+<section id="header" class="parallaxParent ">
+  <!-- logo ici -->
+  <div id='slider' class="bg_head carousel slide">
+    <div class="carousel-inner slider" role='listbox'>
+      <div class='slider-1 slider item active'>
+        <div class="img">
+          <div class="bg">
+          </div>
+        </div>
+        <div class="inner carousel-caption">
+
+          <span class='raleway fn-lg-5 fn-xs-4 ' style='font-weight : 600' >Faites Denfert - Orly</span><br>
+          <span class='raleway fn-lg-5 fn-xs-4 ' style='font-weight : 600' > en toute convivialité</span>
+          <p class='abel welcom fn-sm-3 fn-xs-2'>pour <span  style='color: yellow'>12.50€</span> seulement</p>
+        </div>
+      </div>
+      <div class='slider-2 slider item'>
+        <div class="img">
+          <div class="bg">
+          </div>
+        </div>
+        <div class="inner carousel-caption">
+
+          <span class='raleway fn-lg-5 fn-xs-4 ' style='font-weight : 600;'>Un voyage abordable</span><br>
+          <span class='abel fn-lg-5 fn-xs-4 ' style='font-weight : 600; color : #4CF' > pas besoin de casser sa tirelire</span> <br>
+          <p class='abel fn-sm-3 fn-xs-2'>pour <span  style='color: yellow'>12.50€</span> seulement</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <img id='logo' class='img' src="./lib/src/stars.png" /> -->
+</section>
+
+<section id="simulate" class='parallaxParent subtleDots'>
+
+  <div class="_black ">
+    <div class='simulate container-fluid'>
+
+      <div id='way' class="row col-lg-10 col-sm-10 col-sm-offset-1 col-lg-offset-1" >
+        <div class="alert alert-danger fade in" data-name='datetime' style='display: none' role='alert'>
+          <a href="#" class='close dismiss-datetime' data-target='datetime' aria-label="close" >&times;</a>
+          <strong>Attention!</strong> Veuillez vérifier que les données soumis soient bien valide
+        </div>
+        <form class='form row'>
+          <div class="form-group col-sm-offset-4 col-lg-offset-4">
+            <!-- date et heure -->
+            <div class="form-group form-inline">
+              <div class='col-sm-4 col-lg-3 col-xs-10 input-group date' id='datetime'>
+                <input type='text' class="form-control" required="true"/>
+                <span class="input-group-addon">
+                  <span class="fa fa-calendar"></span>
+                </span>
+              </div>
+              <div class="col-sm-4 col-lg-3 col-xs-10 input-group" id='clock'>
+                <input type='text' class="form-control" required="true"/>
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-time pointer"></span>
+                </span>
+              </div>
+              <span style='color : #FC5'>Prochainement... </span>
+            </div>
+            <p style='color: #fff'>
+              Pour réserver appeler directement le 07 60 34 17 02 ou contacter par sms.<br>
+              Le paiement se fera en espece ou carte bleu directement avec le chauffeur
+            </p>
+            <!-- form nb de place -->
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<section id="info" class='map'>
+  <div class="container-fluid ">
+    <h1> </h1>
+    <!-- <h1 class='raleway'>Nos proposition</h1> -->
+    <div class="row-eq-height col-lg-10 col-lg-offset-1">
+      <div class="col-sm-4 panel panel-default">
+        <div class="panel-title ">
+          Transfert partagé - Denfert-Orly
+        </div>
+        <hr>
+        <div class="panel-body">
+          <h4>Denfert-Aeroport Orly 12€50</h4>
+          <p class="desc">
+            Indiv. ou en groupe
+            retrouver Vroomcab pour un
+            transfert Denfert-AeOrly pour 12€50/pr
+          </p>
+        </div>
+      </div>
+      <div class="col-sm-4 col-sm-offset-5 panel panel-default">
+        <div class="panel-title ">
+          <i class="fa fa-paper-plane"></i><span>Contactez-nous</span>
+        </div>
+        <hr>
+        <div class="panel-body">
+          <div class="contact">
+            <h4><i class="fa fa-envelope"></i></h4>
+            <p class="desc">
+              contact@vroomcab.fr
+            </p>
+          </div>
+          <span>ou</span>
+          <div class="contact">
+            <h4><i class="fa fa-phone-square"></i></h4>
+            <p class="desc">
+              07 60 34 17 02
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <section id='footer' class="container-fluid" style='background-color: #343735; color : #eee'>
+    <div class="row-eq-height col-lg-offset-3 col-sm-offset-3">
+      <div class="col-sm-4">
+        <ul>
+          <h4>Vroomcab</h4>
+          <li>A propos de nous</li>
+          <li><a href="cgu.html">Conditions Générales d'utilisation</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-4">
+
+        <ul>
+          <h4>Service Client</h4>
+          <li><a href="#simulate">contactez nous</a></li>
+          <li>FAQ</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-10 col-sm-offset-2 fn-grey">
+      <p class='copy'>
+        Copyright © 2016 Vroomcab by M'Car'J / Adresse : 69, rue de la glacière , 75013 Paris, France / Appel : 07 60 34 17 02 / http://vroomcab.fr
+      </p>
+    </div>
+
+  </section>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+</body>
+</html>
