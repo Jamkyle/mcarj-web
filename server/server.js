@@ -15,6 +15,7 @@ var server = new http.Server(app)
 var io = require('socket.io')(server)
 
 var port = require('./config.js').port
+var host = require('./config.js').host
 
 app.use('/cancel', function(req, res){
   var query = url.parse(req.url).query.split('&');
@@ -25,8 +26,8 @@ app.use('/cancel', function(req, res){
   cancel(date, course, res)
 })
 
-server.listen(port, function(){
-  console.log('server is running... on *:' + port);
+server.listen(port, host, function(){
+  console.log('server is running... on '+host+':' + port);
 });
 
 function generateId(name, fname){
