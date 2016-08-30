@@ -72,8 +72,9 @@ exports.sendMail = function(data){
      if(err)
       console.log(err);
       else {
-          console.log(res);
           server.socket.emit('send_success')
+          console.log(res);
+
       }
       smtpTransport.close()
    });

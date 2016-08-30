@@ -18,8 +18,8 @@ var port = require('./config.js').port
 var address = require('./config.js').address
 
 
-app.use('//cancel', function(req, res){
-
+app.use('/cancel/:course', function(req, res){
+  console.log(course);
     var query = url.parse(req.url).query.split('&');
     var course = query[0].split('=')[1];
     var date = query[1].split('=')[1];
@@ -61,7 +61,7 @@ var count = function (users, socket){
 
 }
 
-io.sockets.on('connection', function (socket) {
+io.on('connection', function (socket) {
   socket.emit('connect', 'vous êtes bien connecté')
   socket.on('date_selected', function (date){
     var users = db.child(date+'/users');
@@ -86,5 +86,6 @@ io.sockets.on('connection', function (socket) {
     // generatePdf(data)
     // planning(data)
   });
-  exports.socket = socket;
+
 });
+exports.socket = io;

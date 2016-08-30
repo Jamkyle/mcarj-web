@@ -14,7 +14,7 @@ var charge = stripe.charges.create({
   if (err && err.type === 'StripeCardError') {
     // The card has been declined
     console.log('card has been declined');
-    socket.emit('error_card');
+    server.socket.emit('error_card');
   }else {
     console.log('good reussi');
     // sendMail.sendMail(data, null, id)
