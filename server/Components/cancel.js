@@ -125,14 +125,14 @@ module.exports = function(creneau, course, res) {
       if (err) {
 
         console.log('There was an error contacting the Calendar service: ' + err);
-        // res.write('votre demande d\'annulation a déjà été prise en compte ou n\'existe plus');
-        res.writeHead(302, {'Location': 'http://localhost:3000'})
+        // res.write('votre demande d\'annulation a déjà été prise en compte ou n\'existe pas');
+        res.writeHead(302, {'Location': 'https://vroomcab.fr/'})
         res.end()
 
         return;
       }
       console.log('Event remove');
-      res.writeHead(302, {'Location': 'http://localhost:3000'})
+      res.writeHead(302, {'Location': 'https://vroomcab.fr/'})
 
       var date = new Date()
       console.log(date.toString());

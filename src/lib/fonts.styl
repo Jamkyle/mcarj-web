@@ -2,6 +2,29 @@
 @import url(https://fonts.googleapis.com/css?family='Merienda|Rochester|Montez|Oleo+Script+Swash+Caps|Lily+Script+One|Engagement|Mrs+Sheppards');
 @import './mixins'
 
+
+@font-face
+  font-family Helvetica
+  font-style normal
+  src url('./assets/fonts/Helvetica.otf')
+
+.Helvetica
+  font-family Helvetica
+
+@font-face
+  font-family HelveticaBold
+  src url('./assets/fonts/Helvetica75-Bold.ttf')
+
+.HelveticaBold
+  font-family HelveticaBold
+
+@font-face
+  font-family BebasNeue
+  font-style normal
+  src url('./assets/fonts/BebasNeue.otf')
+
+.BebasNeue
+  font-family BebasNeue
 .raleway
   font-family: 'Raleway', sans-serif;
 .rambla
@@ -24,17 +47,25 @@
 .fn-grey
    color #aaa
 
-@media (min-width: 320px)
+@media (max-width: 460px)
   for n in (1..5)
     .fn-xs-{n}
-      font-size 0.5em + (n * n / 10)
+      font-size 0.7em + (n / 10)
 
-@media (min-width:768px )
+@media (min-width:700px )
   for n in (1..5)
     .fn-sm-{n}
-      font-size 1.5em * (1 + n /10)
-
-@media (min-width:990px )
+      font-size 2.1em + (n / 100)
+    .fn-lg-{n}
+      font-size 2.6em + (n / 100)
+@media mobile and (min-width:700px ) and (orientation : landscape)
+  for n in (1..5)
+    .fn-sm-{n}
+      font-size 2em + (n / 100)
+    .fn-lg-{n}
+      font-size 2.5em + (n / 100)
+//
+@media (min-width:1024px )
   for n in (1..5)
     .fn-lg-{n}
-      font-size 2.2em * (1 + n / 10)
+      font-size 3em + (n / 100)

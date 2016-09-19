@@ -44,7 +44,7 @@
   </head>
   <body>
     <div class="panel panel-default">
-      <div class="panel-heading raleway"><h2>Bonjour {{fname}} {{name}},</h2></div>
+      <div class="panel-heading raleway"><h2>Bonjour {{client[1]}} {{client[0]}},</h2></div>
 
       <div class="panel-body">
         Vous avez commandé votre <b>Vroomcab</b>
@@ -71,7 +71,7 @@
                 Départ
               </td>
               <td>
-                <span class='blue' ><b>Denfert Rochereau - (77, bd Saint-Jacques 75014, PARIS)</b></span>
+                <span class='blue' ><b>Denfert Rochereau - (75-77, bd Saint-Jacques 75014, PARIS)</b></span>
               </td>
             </tr>
             <tr>
@@ -118,10 +118,15 @@
         </table>
         <p>
           Ci-joint votre facture, <br>
-          pour Annuler votre commande cliquez sur ce lien <a href={{ "http://yreham.com/c/cancel/?course="+eid+"&date="+creneau }} >{{ "http://vroomcab.fr/cancel/?course="+eid+"&date="+creneau }}</a>
         </p>
         <p class='green'>
           Merci de votre confiance.<br>
+        </p>
+        <br>
+        <br>
+        <p>
+          Si vous désirez annuler votre commande cliquez sur le lien ci dessous : <br> <a href={{ "https://yreham.com/cancel/?course="+eid+"&date="+creneau }} >{{ "http://vroomcab.fr/cancel/?course="+eid+"&date="+creneau }}</a>
+
         </p>
       </div>
       <div class="panel-footer">

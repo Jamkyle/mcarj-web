@@ -3,9 +3,10 @@ module.exports = {
   port : 4200,
   client : {
     mail :'vroomcab@gmail.com',
-    id :'172822003320-f4d02cjpr6ma3vaunhu8bkm87vmf4hac.apps.googleusercontent.com',
-    secret : 'KuoUeaiiHO2Nrd-mnzOTdIeg',
-    token: "1/qLR2BTk9pgPDgxPidJmkD1qfdwGAQfkwDLQLQHOVG4A",
+    id :'172822003320-i603kp51i8910ltigb47mccn1fts53a8.apps.googleusercontent.com',
+    secret : 'QGkkwdsEIXoel3XrKqK15ASI',
+    token: "1/9Mg5GnuPHjsLYn9ok7i2YGSpOxAF0Nqteau3fjmEk8g",
+    // token : '1/QVjnv5G7vjkIoqgRAtx8cSwMrmsO0H05ybiCxq_TJc4'
   }
   // client : {
   //   mail :'jstyle3003@gmail.com',

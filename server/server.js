@@ -18,14 +18,14 @@ var port = require('./config.js').port
 var address = require('./config.js').address
 
 
-app.use('/cancel/:course', function(req, res){
+app.use('/cancel/', function(req, res){
   console.log(course);
-    var query = url.parse(req.url).query.split('&');
-    var course = query[0].split('=')[1];
-    var date = query[1].split('=')[1];
+  var query = url.parse(req.url).query.split('&');
+  var course = query[0].split('=')[1];
+  var date = query[1].split('=')[1];
 
-    console.log('course : %s, date : %s', course, date);
-    cancel(date, course, res)
+  console.log('course : %s, date : %s', course, date);
+  cancel(date, course, res)
 })
 
 server.listen(port, function(){
@@ -46,16 +46,16 @@ var sendBack = function( sits, socket ){
 var count = function (users, socket){
   var sits = null;
   users.on('value', function(childs){
-      if(childs.val()!=null)
-      {
-        var obj = Object(childs.val())
-        for ( var key in obj ) {
-          if (typeof obj[key].status === 'undefined') {
-            tmp = parseInt(obj[key].sits)
-            sits += tmp
-          }
+    if(childs.val()!=null)
+    {
+      var obj = Object(childs.val())
+      for ( var key in obj ) {
+        if (typeof obj[key].status === 'undefined') {
+          tmp = parseInt(obj[key].sits)
+          sits += tmp
         }
-      }else sits = 0
+      }
+    }else sits = 0
     sendBack( sits , socket )
   })
 
@@ -68,8 +68,8 @@ io.on('connection', function (socket) {
     var sits = count(users, socket);
 
   })
-   // "ada"
-      // var users = childKey.val()
+  // "ada"
+  // var users = childKey.val()
 
 
   // socket.on('sendMail', function (data) {
@@ -78,11 +78,16 @@ io.on('connection', function (socket) {
   //
   // });
   socket.on('sendMail', function (data) {
+    var d = new Date().getTime();
     // var id = generateId(data.name, data.fname)
-    stripe(data)
-    // recompte à la reservation d'un membre
-    var users = db.child(data.creneau+'/users')
-    var sits = count(users, socket)
+    var dt = data.timestamp;
+    if(d < dt)
+      {
+        stripe(data)
+        // recompte à la reservation d'un membre
+        var users = db.child(data.creneau+'/users')
+        var sits = count(users, socket)
+      }
     // generatePdf(data)
     // planning(data)
   });

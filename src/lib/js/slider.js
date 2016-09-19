@@ -1,5 +1,5 @@
 $('#slider').carousel({
-  interval : 4000
+  interval : 6000
 })
 $(".slider-1").click(function(){
   $("#slider").carousel(0);

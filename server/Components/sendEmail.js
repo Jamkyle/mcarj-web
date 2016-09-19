@@ -26,6 +26,7 @@ var Config = require('../config.js');
 // }
 
 exports.sendMail = function(data){
+  console.log('======= préparation du mail =======');
   var smtpTransport = nodemailer.createTransport({
     service: "Gmail",
     auth: {

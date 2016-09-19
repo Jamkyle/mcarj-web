@@ -15,7 +15,7 @@ var db = require('./firebase.js').ref('/')
 
 module.exports = function(data) {
 
-
+console.log('======== préparation du planning =======');
 // If modifying these scopes, delete youra previously saved credentials
 // at ~/.credentials/calendar-nodejs-quickstart.json
     var SCOPES = ['https://www.googleapis.com/auth/calendar'];
@@ -113,24 +113,26 @@ module.exports = function(data) {
      * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
      */
     function addEvent(auth) {
-
+        console.log('======= init firebase ======');
         var ref = db.child(data.creneau+'/users')
+
         var newPost = ref.push()
         var idKey = newPost.key;
         var pre = _.toLower(idKey)
         var id = pre.replace(/-|_| /g, 'p')
+        console.log('push');
         newPost.set({
             id : id,
             email : data.destination,
-            name: { last : data.name, first : data.fname }
+            name: { last : data.client[0], first : data.client[1] }
         })
 
         var calendar = google.calendar('v3');
 
         var event = {
-            'summary': 'Passager: '+data.name+' - '+id+' Places: '+data.sits,
+            'summary': 'Passager: '+data.client[0]+' - '+id+' Places: '+data.sits,
             'location': '77, bd Saint-Jacques 75014 PARIS',
-            'description': 'Nom passager : '+data.name+' '+data.fname+' \n a reservé pour : '+data.sits+" \n nombre de bagages : "+data.packs*data.sits,
+            'description': 'Nom passager : '+data.client[0]+' '+data.client[1]+' \n a reservé pour : '+data.sits+" \n nombre de bagages : "+data.packs+" \n tel : "+data.client[2],
             'start': {
                 'dateTime': data.dateApi,
                 'timeZone': 'Europe/Paris',
@@ -143,6 +145,7 @@ module.exports = function(data) {
 
         };
         var eid;
+
         calendar.events.insert({
             auth: auth,
             calendarId: 'primary',
@@ -162,7 +165,7 @@ module.exports = function(data) {
                 sits : data.sits,
                 course : eid,
                 email : data.destination,
-                name: { last : data.name, first : data.fname }
+                name: { last : data.client[0], first : data.client[1] }
             });
 
             generatePdf(Object.assign(data, {id : id, eid : eid}))

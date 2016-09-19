@@ -21,14 +21,14 @@ function generator(name){ //génération d'un id
 
 //reçoit en paramétre les données du formulaire de reservation
 module.exports = (data) => {
-
-  var name = _.capitalize(data.name)
+  console.log('======== génération du pdf ========');
+  var name = _.capitalize(data.client[0])
   var myDoc= new pdf;
   var dest;
   const numFac = new Date().toISOString().slice(0, 19).replace(/[^0-9]/g, "")
-  const nomfacture = "facture-"+generator(data.name)+".pdf";
+  const nomfacture = "facture-"+generator(name)+".pdf";
   var writeStream = fs.createWriteStream(`./pdf/${nomfacture}`);
-  ( data.company ) ? dest = data.company : dest = _.capitalize(data.fname)+' '+name;
+  ( data.company ) ? dest = data.company : dest = _.capitalize(data.client[1])+' '+name;
 
   myDoc.pipe(writeStream);
 
@@ -44,7 +44,7 @@ module.exports = (data) => {
   myDoc.font('Times-Roman')
 
   .fontSize(18)
-  .text(data.address, 150,125);
+  .text(data.client[3], 150,125);
 
   myDoc.font('Times-Roman')
 
@@ -209,10 +209,10 @@ module.exports = (data) => {
   .fillOpacity(80)
   .fontSize(12)
   .text('€            '+soustotal, 455, 365)
-  .text('SOUS-TOTAL              '+soustotal,370,460)
+  .text('SOUS-TOTAL              '+soustotal+'  €',370,460)
   .text('TAUX DE TVA        '+'10,00%',370,485)
-  .text('TVA                              '+(montant/10),370,510)
-  .text('TOTAL                         '+(montant),370,535);
+  .text('TVA                              '+(montant/10)+'  €',370,510)
+  .text('TOTAL                         '+(montant)+'  €',370,535);
 
   myDoc.lineCap('butt')
   .moveTo(175, 200)

@@ -1,9 +1,9 @@
 //img src
   $img3 = '../lib/assets/paris.jpg'
-  $img1 = '../lib/assets/header.jpg'
+  $img1 = '../lib/assets/Photo_car_1b.jpg'
   $img2 = '../lib/assets/saint_augustin_paris.jpg'
   $orly = '../lib/assets/orly.jpg'
-  $coins = '../lib/assets/coins.jpg'
+  $coins = '../lib/assets/Photo_Monnaie_2.jpg'
   $tower = '../lib/assets/tower.jpeg'
   $night = '../lib/assets/night.jpg'
   $map = '../lib/assets/map.png'
@@ -19,8 +19,18 @@ html, body
   height 100%
   margin 0
 
-a
+a, a:link
   color #aaa
+  text-decoration none
+
+header
+  position : absolute; z-index:999; color: white; width:100%; text-align: center
+  height 50px
+  padding 10px
+  background-color rgba(20,20,20,0.6)
+  a
+    color #DDD
+    font-size 1.2em
 
 ._left
   position relative
@@ -116,7 +126,7 @@ a
   & > div#slider
     z-index 0
     position relative
-    height 100%
+    height 102%
     top -12%
 
 .slider
@@ -146,7 +156,7 @@ a
       background url($coins) no-repeat 50%
       background-size cover
     .bg
-      background #303030
+      background 0px 0px no-repeat linear-gradient(45deg, hsla(208, 100%, 19%, 1) 0%, hsla(208, 100%, 19%, 0) 70%),linear-gradient(135deg, hsla(0, 0%, 0%, 1) 10%, hsla(0, 0%, 0%, 0) 80%),linear-gradient(225deg, hsla(201, 100%, 16%, 1) 10%, hsla(201, 100%, 16%, 0) 80%),linear-gradient(315deg, hsla(0, 0%, 29%, 1) 100%, hsla(0, 0%, 29%, 0) 70%);
 #simulate
   overflow visible
   &:before
@@ -155,7 +165,7 @@ a
     top 0
     left 0%
     width 100%
-    height 110%
+    height 100%
     content: "";
     box-shadow: 0 4px 10px #222;
   &:after
@@ -174,10 +184,12 @@ a
     background-color rgba(020,20,20,0.8)
 
 #header
-  height 110vh
+  height 100%
 
 .inner
-  top 40%
+  top 34%
+  @media mobile and (min-device-width : 700px) and (orientation : landscape)
+    top 23%
   color #fff
   &-shadow
     border-radius: 5px
@@ -291,8 +303,6 @@ a
     font-weight 200
     &:hover
       color #fff
-  a
-    text-decoration none
 .d
   &:after
     content : 'de :'
@@ -322,6 +332,9 @@ a
 .modal{
   z-index: 20;
 }
+.modal-header{
+  text-align center
+}
 .modal-backdrop{
   z-index: 10;
 }
@@ -343,6 +356,8 @@ a
   float: left;
 }
 .small-group
+  display inline-block
+  margin 2% 0
   @media only screen and ( min-width : 420px )
     width : 300px
 // results
@@ -387,5 +402,36 @@ li
   background-color rgba(#222, 0.9)
   color #FFF
 
+.arrow-down
+  display block
+  position absolute
+  z-index 999
+  bottom 0
+  text-align center
+  padding 10px 0 0 0
+  width 100%
+  color white
+  cursor pointer
+  &:hover
+    background rgba(30,30,30,.2)
+
+.arrow
+  background: url("./assets/svg/arrow.svg")
+  height 40px
+  width 40px
+  margin auto
+  animation float 5s linear infinite
+  @media (max-width: 460px)
+    transform-origin 0 0
+    transform matrix(0.5,0,0,0.5,12,0)
+@keyframes {'float'}
+  for i in 0..10
+    {10% * i}
+      transform matrix(1,0,0,1,12,5 * sin(i * PI/2)+5)
+
+.cards-icon
+  display inline-block
+  @media (min-width: 700px)
+    margin-left 20%
 //fonts
 @import './fonts'
